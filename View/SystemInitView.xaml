@@ -1,0 +1,144 @@
+﻿<UserControl x:Class="LFFSSK.View.SystemInitView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <DockPanel LastChildFill="True" Margin="50">
+        <Border DockPanel.Dock="Top" Background="{StaticResource cIBlack}" CornerRadius="0,0,3,3" Margin="0,0,0,5">
+            <Border.Effect>
+                <DropShadowEffect Color="#CC000000" Direction="280" ShadowDepth="4" BlurRadius="8" Opacity="0.4" />
+            </Border.Effect>
+            <TextBlock Margin="20,5" Text="Initializing Resources......" Style="{StaticResource H2}" Foreground="{StaticResource cIGray}"/>
+        </Border>
+        <ScrollViewer DockPanel.Dock="Top" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="8,0,8,2">
+            <ScrollViewer.Resources>
+                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">30</sys:Double>
+            </ScrollViewer.Resources>
+            <ItemsControl DockPanel.Dock="Top" ItemsSource="{Binding Checklist}" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border x:Name="bdContent" Padding="3" BorderThickness="0,0,0,0.5" BorderBrush="White">
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding InitialStatus}" Value="Pending">
+                                            <Setter Property="Background" Value="{StaticResource cIBlack}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding InitialStatus}" Value="Checking">
+                                            <Setter Property="Background" Value="{StaticResource cIBlack}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding InitialStatus}" Value="Success">
+                                            <Setter Property="Background" Value="{StaticResource cIGreenSea}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding InitialStatus}" Value="Warning">
+                                            <Setter Property="Background" Value="{StaticResource cIYellow}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding InitialStatus}" Value="Error">
+                                            <Setter Property="Background" Value="{StaticResource cIRed}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding InitialStatus}" Value="Information">
+                                            <Setter Property="Background" Value="{StaticResource cIGray}" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Expander>
+                                <Expander.Style>
+                                    <Style TargetType="{x:Type Expander}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding InitialStatus}" Value="Warning">
+                                                <Setter Property="IsExpanded" Value="True" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding InitialStatus}" Value="Error">
+                                                <Setter Property="IsExpanded" Value="True" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding InitialStatus}" Value="Information">
+                                                <Setter Property="IsExpanded" Value="False" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding InitialStatus}" Value="Success">
+                                                <Setter Property="IsExpanded" Value="False" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding InitialStatus}" Value="Checking">
+                                                <Setter Property="IsExpanded" Value="True" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Expander.Style>
+                                <Expander.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="30" Width="35" Margin="4" RenderOptions.BitmapScalingMode="HighQuality">
+                                            <Image.Style>
+                                                <Style TargetType="{x:Type Image}">
+                                                    <Setter Property="Source" Value="/LFFSSK;component/Resource/Image/Init/Pending.png" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding InitialStatus}" Value="Checking">
+                                                            <Setter Property="Source" Value="/LFFSSK;component/Resource/Image/Init/Processing.png" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding InitialStatus}" Value="Success">
+                                                            <Setter Property="Source" Value="/LFFSSK;component/Resource/Image/Init/Success.png" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding InitialStatus}" Value="Warning">
+                                                            <Setter Property="Source" Value="/LFFSSK;component/Resource/Image/Init/Warning.png" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding InitialStatus}" Value="Error">
+                                                            <Setter Property="Source" Value="/LFFSSK;component/Resource/Image/Init/Error.png" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding InitialStatus}" Value="Information">
+                                                            <Setter Property="Source" Value="/LFFSSK;component/Resource/Image/Init/Information.png" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <StackPanel Orientation="Vertical" Margin="10,0,0,0" VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding DisplayName}">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource H4}">
+                                                        <Setter Property="Foreground" Value="Black" />
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding InitialStatus}" Value="Pending">
+                                                                <Setter Property="Foreground" Value="{StaticResource cIGray}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding InitialStatus}" Value="Information">
+                                                                <Setter Property="Foreground" Value="{StaticResource cIGray}" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding InitialStatus}" Value="Success">
+                                                                <Setter Property="Foreground" Value="{StaticResource cIGray}" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Expander.Header>
+                                <ItemsControl ItemsSource="{Binding Remarks}" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Vertical" Width="{Binding ElementName=bdContent, Path=ActualWidth}" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Margin="4,4,0,0" Padding="4" Background="#FFFFFF">
+                                                <TextBlock Text="{Binding}" Style="{StaticResource H5}" FontWeight="Bold" TextWrapping="WrapWithOverflow" Foreground="#083755" />
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Expander>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </DockPanel>
+</UserControl>

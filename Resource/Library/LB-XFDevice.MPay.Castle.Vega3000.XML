@@ -1,0 +1,345 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LB-XFDevice.MPay.Castle.Vega3000</name>
+    </assembly>
+    <members>
+        <member name="T:MPAY.Client">
+            <summary>
+            Instantiate this class to get the access to Vega device
+            </summary>
+        </member>
+        <member name="F:MPAY.Client.mResponse">
+            <summary>
+            Actual response returned by ipos.exe that is already mapped
+                MResponse - base response
+                MResponse.CardResponse - subclass mapped for CardSale and CardVoid
+                MResponse.SettlementResponse - subclass mapped for CardSettlement
+                MResponse.QRResponse - subclass mapped for QRSale, QRVoid and QRRefund
+            </summary>
+        </member>
+        <member name="F:MPAY.Client.cResponse">
+            <summary>
+            CardResponse - implicit used
+            </summary>
+        </member>
+        <member name="F:MPAY.Client.qResponse">
+            <summary>
+            QrResponse - implicit used
+            </summary>
+        </member>
+        <member name="M:MPAY.Client.#ctor(System.String)">
+            <summary>
+            empty currently
+            </summary>
+        </member>
+        <member name="M:MPAY.Client.CardSettlement(System.String,System.String)">
+            <summary>
+                Perform Card Settlement per nii (NR, AMEX, MCCS, etc.)
+            </summary>
+            <param name="storeID"></param>
+            <param name="niiName"></param>
+            <returns>
+                MResponse base
+                MResponse.CardResponse (if not null)
+            </returns>
+        </member>
+        <member name="M:MPAY.Client.QRVoid(System.String,System.String,System.String)">
+            <summary>
+            Perform QR Void (must be done before settlement) - full cancellation
+            </summary>
+            <param name="storeID"></param>
+            <param name="uniqueTranNumber"></param>
+            <param name="traceNumber">get this from [qrRefID] returned in QRSale </param>
+            <returns></returns>
+        </member>
+        <member name="M:MPAY.Client.CardVoid(System.String,System.String)">
+            <summary>
+            Perform Card Void before settlement
+            </summary>
+            <param name="storeID"></param>
+            <param name="invoiceNumber"> value returned in MResponse.CardResponse.invoiceNumber</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPAY.Client.QRRefund(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Perform QR Refund - partial return from success QR Sale - only valid T+90
+            </summary>
+            <param name="storeID"></param>
+            <param name="amount"></param>
+            <param name="tips"></param>
+            <param name="uniqueTranNumber"></param>
+            <param name="traceNumber">get this from [qrRefID] returned in QRSale</param>
+            <returns></returns>
+        </member>
+        <member name="M:MPAY.Client.QRSale(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Perform QR Sale - Type - Business scans customer where valid QR is required from customer device 
+            </summary>
+            <param name="storeID"></param>
+            <param name="amount"></param>
+            <param name="tips"></param>
+            <param name="uniqueTranNumber"></param>
+            <param name="qrContent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MPAY.Client.CardSale(System.String,System.String,System.String,System.String)">
+            <summary>
+            Perform Card Sale - 
+                pin / swipe or wave - please refer to instruction given in the terminal for
+                completion. This is without discountAmount specified - amount = discountAmount
+                automatically.
+            </summary>
+            <param name="storeID"></param>
+            <param name="amount"></param>
+            <param name="tips"></param>
+            <param name="uniqueTranNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MPAY.Client.CardSale(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            this is for CardSale with discountAmount.
+            </summary>
+            <param name="storeID"></param>
+            <param name="amount"></param>
+            <param name="discountAmount">use same as amount</param>
+            <param name="tips"></param>
+            <param name="uniqueTranNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MPAY.Client.PingTest">
+            <summary>
+            Echo test to check whether the terminal is connected.
+            Exclusion - bank host test.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:MPAY.Client.iposPath">
+            <summary>
+            full path location for ipos.exe
+            </summary>
+        </member>
+        <member name="P:MPAY.Client.requestMessage">
+            <summary>
+            Valid JSON representation for sending message 
+            </summary>
+        </member>
+        <member name="T:MPAY.Model.MBase">
+            <summary>
+            Base Response
+            </summary>
+        </member>
+        <member name="F:MPAY.Model.MBase._tranType">
+             need to be checked against 
+            
+        </member>
+        <member name="T:MPAY.Model.Request.CardSale">
+            <summary>
+            To perform card sale - wave, pin and swipe
+            </summary>
+        </member>
+        <member name="M:MPAY.Model.Request.CardSale.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            card sales without discounted amount (K$sh Card)
+            </summary>
+            <param name="storeID">required</param>
+            <param name="amount">required </param>
+            <param name="tips">required - use 0.00</param>
+            <param name="uniqueTranNumber">required</param>
+        </member>
+        <member name="M:MPAY.Model.Request.CardSale.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            card sales with (K$sh Card)
+            </summary>
+            <param name="storeID">required</param>
+            <param name="amount">required </param>
+            <param name="tips">required - use 0.00</param>
+            <param name="uniqueTranNumber">required</param>
+        </member>
+        <member name="M:MPAY.Model.Request.CardSettlement.#ctor(System.String,System.String)">
+            <summary>
+            card settlement
+            </summary>
+            <param name="storeID">required</param>
+            <param name="niiName">required</param>
+        </member>
+        <member name="T:MPAY.Model.Request.CardVoid">
+            <summary>
+            CardVoid
+            </summary>
+        </member>
+        <member name="M:MPAY.Model.Request.CardVoid.#ctor(System.String,System.String)">
+            <summary>
+            Card Void
+            </summary>
+            <param name="storeID">required</param>
+            <param name="invoiceNumber">required</param>
+        </member>
+        <member name="T:MPAY.Model.Request.MRequest">
+            <summary>
+            base request
+            </summary>
+        </member>
+        <member name="T:MPAY.Model.Request.Ping">
+            <summary>
+            ping - echo test
+            </summary>
+        </member>
+        <member name="M:MPAY.Model.Request.Ping.#ctor">
+            <summary>
+            only require tran-type : will be set
+            </summary>
+        </member>
+        <member name="M:MPAY.Model.Request.Ping.#ctor(System.String,System.String)">
+            <summary>
+            in case wifiIP and wifiPort required
+            </summary>
+            <param name="wifiIP">ip</param>
+            <param name="wifiPort">port</param>
+        </member>
+        <member name="T:MPAY.Model.Request.QRRefund">
+            <summary>
+            QR Refund
+            </summary>
+        </member>
+        <member name="M:MPAY.Model.Request.QRRefund.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Qr Refund
+            </summary>
+            <param name="storeID">required</param>
+            <param name="amount">required</param>
+            <param name="tips">required - use 0.00</param>
+            <param name="uniqueTranNumber">required</param>
+            <param name="traceNumber">required</param>
+        </member>
+        <member name="T:MPAY.Model.Request.QRSale">
+            <summary>
+            QR Sale - Business scans customer
+            </summary>
+        </member>
+        <member name="M:MPAY.Model.Request.QRSale.#ctor(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            QR Sale</summary>
+            <param name="storeID">required</param>
+            <param name="amount">required</param>
+            <param name="tips">required - use 0.00</param>
+            <param name="uniqueTranNumber">required</param>
+            <param name="qrContent">required</param>
+        </member>
+        <member name="T:MPAY.Model.Request.QRVoid">
+            <summary>
+            QR Void
+            </summary>
+        </member>
+        <member name="M:MPAY.Model.Request.QRVoid.#ctor(System.String,System.String,System.String)">
+            <summary>
+            QR Void
+            </summary>
+            <param name="storeID">required</param>
+            <param name="uniqueTranNumber">required</param>
+            <param name="traceNumber">required</param>
+        </member>
+        <member name="T:MPAY.Model.Response.CardResponse">
+            <summary>
+            CardResponse - for card sale and card void
+            </summary>
+        </member>
+        <member name="P:MPAY.Model.Response.CardResponse.terminalVerificationResult">
+            <summary>
+            Terminal Verification Result
+            * “1” – Pin Verified Success, No Signature Required
+            * “2” – Signature Required
+            * “3” - No Signature Required
+            </summary>
+        </member>
+        <member name="T:MPAY.Model.Response.MResponse">
+            <summary>
+            Response holder for all type of transactions
+            </summary>
+        </member>
+        <member name="T:MPAY.Model.Response.QrResponse">
+            <summary>
+            Qr Response
+            </summary>
+        </member>
+        <member name="T:MPAY.Model.Response.SettlementResponse">
+            <summary>
+            Settlement Response
+            </summary>
+        </member>
+        <member name="T:MPAY.Model.TranType">
+            <summary>
+            TranType - currently unused.
+            </summary>
+        </member>
+        <member name="F:MPAY.Model.TranType.AvailableTranType">
+            initialize valid tran-type. should have used enum but 
+            no '-' is supported in .net specification
+            
+        </member>
+        <member name="T:MPAY.Utility.JsonConverter.Deserializer">
+            <summary>
+            utility - deserialize class
+            </summary>
+        </member>
+        <member name="M:MPAY.Utility.JsonConverter.Deserializer.ToObject``1(System.String)">
+            <summary>
+            deserialize to object from JSON.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MPAY.Utility.JsonConverter.Serializer">
+            <summary>
+            Serializer
+            </summary>
+        </member>
+        <member name="M:MPAY.Utility.JsonConverter.Serializer.ToJSON``1(``0)">
+            <summary>
+            Convert object to JSON string
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="objTarget"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MPAY.Utility.Sender">
+            <summary>
+            Bridge request to ipos.exe
+            </summary>
+        </member>
+        <member name="M:MPAY.Utility.Sender.#ctor(System.String,System.String)">
+            <summary>
+            constructor that requires 
+            1. fullpath of ipos.exe
+            2. parameter (JSON) to send.
+            </summary>
+            <param name="iposPath"></param>
+            <param name="jsonParam"></param>
+        </member>
+        <member name="M:MPAY.Utility.Sender.send">
+            <summary>
+            perform console command [ipos.exe] [requestJSON]
+            send and get response from terminal through ipos.exe.
+            only the last [IPOS-RESPONSE] tag is returned.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:MPAY.Utility.TagSplitter">
+            <summary>
+            Utility class to split tag and response
+            </summary>
+        </member>
+        <member name="P:MPAY.Utility.TagSplitter.tag">
+            <summary>
+            currently only interested in [IPOS-RESPONSE]
+            </summary>
+        </member>
+        <member name="P:MPAY.Utility.TagSplitter.jsonResponse">
+            <summary>
+            actual message response
+            </summary>
+        </member>
+    </members>
+</doc>

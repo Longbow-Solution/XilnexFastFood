@@ -1,0 +1,233 @@
+﻿<Window x:Class="LFFSSK.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:gif="https://github.com/XamlAnimatedGif/XamlAnimatedGif"
+        xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+        xmlns:local="clr-namespace:LFFSSK" xmlns:control="clr-namespace:LFFSSK.View"
+        xmlns:Keyboard = "clr-namespace:XFUtility.Keyboard.Controls;assembly=XFUtility.Keyboard"
+        mc:Ignorable="d"
+        Title="LFFSSK"
+        xmlns:vw="clr-namespace:LFFSSK.View" Icon="Resource/Icon/favicon.png"
+        Height="1920" Width="1080">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox Text="{Binding BarcodeInfo, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed" Focusable="True" MouseLeftButtonDown="TextBox_MouseLeftButtonDown" Name="txtBarcode" AcceptsReturn="True" />
+        <Viewbox Grid.Row="0">
+            <Grid Height="1920" Width="1080">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0.02*"/>
+                </Grid.RowDefinitions>
+
+                <!--Banner-->
+                <DockPanel Grid.Row="0" Panel.ZIndex="1">
+                    <!--<StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                        <Border Background="#FFFFFF" Height="{Binding LogoBarHeight ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Width="{Binding LogoBarWidth ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  HorizontalAlignment="Left" Visibility="{Binding MenuBannerVisibility, UpdateSourceTrigger=PropertyChanged}">
+                            <Button Height="80" Style="{StaticResource TransparentStyle}" Width="170" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding EasyMaintenanceCommand}" CommandParameter="M">
+                                <Image Source="{Binding AnWLogo, UpdateSourceTrigger=PropertyChanged}"  Width="170" Height="100"/>
+                            </Button>
+                        </Border>
+                        <vw:MediaPlayerView2 Width="1080" Height="300" Visibility="{Binding BannerAdsVisibility,UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>-->
+                    
+                    <!--UserView-->
+                    <!--<UserControl Grid.Row="0" Content="{Binding DesignView, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="{Binding UVAlign,UpdateSourceTrigger=PropertyChanged}" Margin="0,65,0,0" Panel.ZIndex="1"/>-->
+                    <UserControl Content="{Binding DesignView, UpdateSourceTrigger=PropertyChanged}"/>
+                </DockPanel>
+               
+                <!--Details UC-->
+                <Grid Grid.Row="0" Panel.ZIndex="3" Visibility="{Binding DetailsViewVisbility, UpdateSourceTrigger=PropertyChanged}">
+                    <Border Background="{StaticResource DarkBackground}"  Opacity="0.7"/>
+                    <Border Height="1740"  VerticalAlignment="Bottom" CornerRadius="30,30,0,0" Background="#F5F6FA" >
+                        <UserControl Content="{Binding DetailView, UpdateSourceTrigger=PropertyChanged}" />
+                    </Border>
+                </Grid>
+
+                <!--Background Image-->
+                <Image Height="1920" Width="1080" HorizontalAlignment="Center" VerticalAlignment="Center" Panel.ZIndex="0" Source="{Binding BackgroundPath, UpdateSourceTrigger=PropertyChanged}"/>
+               
+                <!--<Grid Grid.Row="0" Visibility="Visible" Panel.ZIndex="5">-->
+                <Grid Grid.Row="0" Visibility="{Binding ShowLoading, UpdateSourceTrigger=PropertyChanged}" Panel.ZIndex="5">
+                    <Border Background="{StaticResource LFFSSK_GREY}" Opacity="0.3"/>
+                    <Border VerticalAlignment="Center" HorizontalAlignment="Center" Background="White" Width="300" Height="300" CornerRadius="20"/>
+                    <Image gif:AnimationBehavior.SourceUri="\Resource\LFFImages\Loading.gif"
+                        Width="250" Height="250"
+                        RenderOptions.BitmapScalingMode="LowQuality">
+                        <Image.CacheMode>
+                            <BitmapCache PresentationOptions:Freeze="True"/>
+                        </Image.CacheMode>
+                    </Image>
+                    <!--<vw:LoadingCircleView  HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                </Grid>
+
+                <!--Dark Background-->
+                <!--<Grid Grid.Row="0"
+                      Background="{StaticResource DarkBackground}"
+                      Panel.ZIndex="2"
+                      Visibility="{Binding BackgroundVisibility, UpdateSourceTrigger=PropertyChanged}"
+                      Opacity="0.7"/>-->
+                
+                <!--Cancel Pop Out-->
+                <Grid Grid.Row="0"
+                      Panel.ZIndex="2"
+                      Visibility="{Binding CancelVisibility, UpdateSourceTrigger=PropertyChanged}">
+                    <Border Background="{StaticResource DarkBackground}"  Opacity="0.7"/>
+                    <Border Grid.Row="0" Panel.ZIndex="5" Style="{StaticResource CancelBorder}" Height="350">
+
+                        <StackPanel Orientation="Vertical" Margin="0">
+
+                            <TextBlock Text="{Binding Lbl_Confirmation, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CancelContent}" FontSize="32" Margin="0,30,0,0"/>
+                            <TextBlock Text="{Binding Lbl_CancelContent, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CancelContent}" FontSize="30" Margin="0,20,0,0"/>
+
+                            <UniformGrid Margin="0,70,0,0">
+
+                                <Button  
+                                        Command="{Binding TimeoutYesCommand}"
+                                        CommandParameter="M"
+                                        Style="{StaticResource BtnCancel}" Width="200" Margin="20,0,20,0">
+                                    <TextBlock Text="{Binding Lbl_BtnCancel, UpdateSourceTrigger=PropertyChanged}"/>
+                                </Button>
+
+                                <Button Content="{Binding Lbl_BtnYes, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource BtnOK}"  Width="200" Margin="20,0,20,0"
+                                        Command="{Binding TimeoutNoCommand}" CommandParameter="M"/>
+                            </UniformGrid>
+                        </StackPanel>
+                    </Border>  
+                    
+                </Grid>
+
+                <!--Continue Pop Out-->
+                <!--<Grid Grid.Row="0" Grid.RowSpan="2" Visibility="Visible" Panel.ZIndex="4">-->
+                <Grid Grid.Row="0" Grid.RowSpan="2" Visibility="{Binding ShowTimeOut, UpdateSourceTrigger=PropertyChanged}" Panel.ZIndex="5">
+                    <Border Background="{StaticResource DarkBackground}"  Opacity="0.7"/>
+                    <Border Style="{StaticResource CancelBorder}" Height="350">
+                        <StackPanel Orientation="Vertical" Margin="20">
+                            <TextBlock Text="{Binding Lbl_Confirmation,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CancelContent}" FontSize="32" Margin="0,30,0,0"/>
+                            <TextBlock Text="{Binding Lbl_TimeoutMsj,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource CancelContent}" FontSize="30" Margin="0,20,0,0"/>
+
+                            <UniformGrid Margin="0,50,0,0">
+
+                                <Button  
+                                    Command="{Binding TimeoutNoCommand}"
+                                    
+                                    Style="{StaticResource BtnCancel}" Width="200" Margin="20,0,20,0"
+                                    CommandParameter="A">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Lbl_BtnCancel, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <TextBlock Text="{Binding TimeoutRenewalCountdown,StringFormat=' ({0:ss})', UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                                </Button>
+
+                                <Button  Style="{StaticResource BtnOK}"  Width="200" Margin="20,0,20,0"
+                                    Command="{Binding TimeoutYesCommand}" CommandParameter="A" Content="{Binding Lbl_BtnYes, UpdateSourceTrigger=PropertyChanged}">
+                                   
+                                </Button>
+                            </UniformGrid>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!--Warning Msg Pop Up-->
+                <Grid Grid.Row="0" Panel.ZIndex="4" Visibility="{Binding WarningMessageBoxVisibility, UpdateSourceTrigger=PropertyChanged}">
+                    <Border Background="{StaticResource DarkBackground}"  Opacity="0.7"/>
+                    <Border 
+                        Style="{StaticResource CancelBorder}">
+                        <Grid ShowGridLines="False">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3*"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding TxtErrorHeader,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" FontSize="30" Margin="0,50,0,0" FontWeight="{StaticResource 700}"/>
+                            <TextBlock Text="{Binding TxtErrorMessage, UpdateSourceTrigger=PropertyChanged}"
+                                   FontFamily="{StaticResource BaseFontFamily}"
+                                   FontSize="30"
+                                   FontWeight="{StaticResource 400}"
+                                   TextWrapping="Wrap"
+                                   HorizontalAlignment="Center"                                   
+                                   TextAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Width="600"
+                                   />
+
+                            <Button Content="{Binding Lbl_BtnClose}"
+                                Command="{Binding WarningPopupClose}"
+                                Margin="0,5,0,0"
+                                Style="{StaticResource BtnCancel}"
+                                Grid.Row="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <!--PromoCode Popup-->
+                <Grid Visibility="{Binding VoucherPopupVisibility,UpdateSourceTrigger=PropertyChanged}" Panel.ZIndex="4">
+                    <Border Background="{StaticResource DarkBackground}"  Opacity="0.7"/>
+                    <Border Width="1000" Height="900" VerticalAlignment="Center" HorizontalAlignment="Center" CornerRadius="30" Background="White" BorderThickness="3" >
+                    <Grid ShowGridLines="False">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="6*"/>
+                            <RowDefinition Height="1.5*"/>
+                        </Grid.RowDefinitions>
+                            <TextBlock Text="{Binding Lbl_PromoCode,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" FontSize="32" Margin="0,50" Grid.Row="0" FontFamily="{StaticResource BaseFontFamily}" Foreground="#3D160E"/>
+                            <TextBlock Text="{Binding Lbl_PopUpPromoCode,UpdateSourceTrigger=PropertyChanged}" TextAlignment="Center" FontSize="24" Grid.Row="1" FontFamily="{StaticResource BaseFontFamily}" Foreground="#3D160E"/>
+                            <TextBox Width="700" Height="70" Tag="{Binding Lbl_PromoCode,UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" TextAlignment="Center" FontSize="24" Grid.Row="2" Text="{Binding VoucherCode,UpdateSourceTrigger=PropertyChanged}" Foreground="#3D160E" Style="{StaticResource MaintenanceTextbox}"/>
+                        <Keyboard:OnScreenKisokKeyboard Grid.Row="3"
+                                        Width="900" Height="355"/>
+
+                        <StackPanel Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center">
+                                <Button Width="300" Height="70" Margin="30,0" Content="{Binding Lbl_BtnClose,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource BtnCancel}" Command="{Binding VoucherPopupClose}"/>
+                                <Button Width="300" Height="70" Style="{StaticResource BtnOK}" Content="{Binding Lbl_BtnYes,UpdateSourceTrigger=PropertyChanged}" Command="{Binding BtnPromoCode}"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                </Grid>
+                
+                <!--BottomBar-->
+                <Grid Grid.Row="1" Background="#110300" Panel.ZIndex="2">
+                    <DockPanel LastChildFill="True" VerticalAlignment="Center">
+                        <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Margin="10,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Style="{StaticResource H20}"  Text="" Foreground="{StaticResource LFFSSK_WHITE}" />
+                            <!--<TextBlock Style="{StaticResource H20}" Margin="20,0" Text="{Binding AppVersion, UpdateSourceTrigger=PropertyChanged}" Foreground="{StaticResource LFFSSK_WHITE}" />-->
+                        </StackPanel>
+
+                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <Button Command="{Binding EasyMaintenanceCommand}" CommandParameter="M" Margin="15,0" Style="{StaticResource TransparentStyle}">
+                                <!--<TextBlock Style="{StaticResource H20}"  Text="{Binding KioskId, UpdateSourceTrigger=PropertyChanged}"-->
+                                           <TextBlock Style="{StaticResource H20}"  Text="ABCddddddddddddd" Foreground="{StaticResource LFFSSK_WHITE}" HorizontalAlignment="Right" />    
+                            </Button>
+                            <TextBlock Style="{StaticResource H20}"  Text="{Binding sDate, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,15,0" Foreground="{StaticResource LFFSSK_WHITE}" HorizontalAlignment="Right" />
+                            <TextBlock Style="{StaticResource H20}"  Text="{Binding sTime, UpdateSourceTrigger=PropertyChanged}" Foreground="{StaticResource LFFSSK_WHITE}" HorizontalAlignment="Right" />
+                        </StackPanel>
+                    </DockPanel>
+                </Grid>
+
+                <!--Fail Payment-->
+                <Grid Grid.Row="0" Panel.ZIndex="4" Visibility="{Binding ShowFailPayment, UpdateSourceTrigger=PropertyChanged}">
+                    <Border Background="{StaticResource DarkBackground}"  Opacity="0.7"/>
+                    <Border  VerticalAlignment="Center" HorizontalAlignment="Center" Width="700" Height="auto" Background="White" CornerRadius="30" >
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Lbl_Info,UpdateSourceTrigger=PropertyChanged}" FontSize="24" Foreground="Black" HorizontalAlignment="Center" Margin="0,30,0,0" FontWeight="{StaticResource 700}"/>
+
+                            <TextBlock Text="{Binding Lbl_PaymentFail,UpdateSourceTrigger=PropertyChanged}" FontSize="24px" HorizontalAlignment="Center" Margin="0,20,0,20" TextWrapping="Wrap" TextAlignment="Center" Width="700" FontWeight="{StaticResource 700}"/>
+
+                            <Button  Width="570" Height="64" FontSize="24" Style="{StaticResource BtnSkip}" Command="{Binding BtnFailPayment}" Margin="0,20,0,20">
+                                <TextBlock Text="Okay" Foreground="Black" />
+                            </Button>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                
+                
+            </Grid>
+        </Viewbox>
+    </Grid>
+</Window>

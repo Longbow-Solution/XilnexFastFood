@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Lbl_AddOn" xml:space="preserve">
+    <value>Finish Your Order With Our Popular Add-Ons!</value>
+  </data>
+  <data name="Lbl_AddToCart" xml:space="preserve">
+    <value>Place Order</value>
+  </data>
+  <data name="Lbl_Ads" xml:space="preserve">
+    <value>Touch screen to start</value>
+  </data>
+  <data name="Lbl_Back" xml:space="preserve">
+    <value>Back To Menu</value>
+  </data>
+  <data name="Lbl_BackOnly" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Lbl_BtnClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Lbl_BtnDownsize" xml:space="preserve">
+    <value>Change to Regular</value>
+  </data>
+  <data name="Lbl_BtnPromoCode" xml:space="preserve">
+    <value>Enter Promo Code</value>
+  </data>
+  <data name="Lbl_BtnUpCombo" xml:space="preserve">
+    <value>Upgrade To Combo</value>
+  </data>
+  <data name="Lbl_BtnUpsize" xml:space="preserve">
+    <value>Upgrade To Large</value>
+  </data>
+  <data name="Lbl_BtnYes" xml:space="preserve">
+    <value>Proceed</value>
+  </data>
+  <data name="Lbl_CancelContent" xml:space="preserve">
+    <value>Your item(s) in the cart will be cleared. Do you still want to proceed ?</value>
+  </data>
+  <data name="Lbl_CancelHeader" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Lbl_CancelOrder" xml:space="preserve">
+    <value>Start Over</value>
+  </data>
+  <data name="Lbl_Cash" xml:space="preserve">
+    <value>Payment By Cash</value>
+  </data>
+  <data name="Lbl_CC" xml:space="preserve">
+    <value>Payment By Credit / Debit Card</value>
+  </data>
+  <data name="Lbl_Checkout" xml:space="preserve">
+    <value>PAY NOW</value>
+  </data>
+  <data name="Lbl_CheckVoucher" xml:space="preserve">
+    <value>Some changes on voucher. Please check.</value>
+  </data>
+  <data name="Lbl_CollectPoints" xml:space="preserve">
+    <value>Point Collected</value>
+  </data>
+  <data name="Lbl_Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="Lbl_ContainPromoCode" xml:space="preserve">
+    <value>Have any promo code to use?</value>
+  </data>
+  <data name="Lbl_ContinueOrder" xml:space="preserve">
+    <value>ADD MORE</value>
+  </data>
+  <data name="Lbl_DineIn" xml:space="preserve">
+    <value>Dine-In</value>
+  </data>
+  <data name="Lbl_DoneOnly" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="Lbl_DoneOrder" xml:space="preserve">
+    <value>Done Ordering</value>
+  </data>
+  <data name="Lbl_Download" xml:space="preserve">
+    <value>Download and register as Rooty Buddy!</value>
+  </data>
+  <data name="Lbl_DownloadHere" xml:space="preserve">
+    <value>Download Here</value>
+  </data>
+  <data name="Lbl_Downsize" xml:space="preserve">
+    <value>Change To A Regular Combo!</value>
+  </data>
+  <data name="Lbl_Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Lbl_EnterPromoCode" xml:space="preserve">
+    <value>Please enter promo code!</value>
+  </data>
+  <data name="Lbl_Error" xml:space="preserve">
+    <value>Error Found</value>
+  </data>
+  <data name="Lbl_ErrorAssist" xml:space="preserve">
+    <value>Apologies, we're experiencing issues. Please approach our staff for assistance.</value>
+  </data>
+  <data name="Lbl_ErrorAssist2" xml:space="preserve">
+    <value>Apologies, something went wrong. Please approach our staff for assistance.</value>
+  </data>
+  <data name="Lbl_ErrorTryAgain" xml:space="preserve">
+    <value>Apologies, we're experiencing issues. Please try again.</value>
+  </data>
+  <data name="Lbl_ErrorTryAgain2" xml:space="preserve">
+    <value>Apologies, something went wrong. Please try again.</value>
+  </data>
+  <data name="Lbl_Ewallet" xml:space="preserve">
+    <value>Payment By E-Wallet</value>
+  </data>
+  <data name="Lbl_EwalletMethod1" xml:space="preserve">
+    <value>How to Pay:</value>
+  </data>
+  <data name="Lbl_EwalletMethod2" xml:space="preserve">
+    <value>1. Open your e-Wallet or bank app.</value>
+  </data>
+  <data name="Lbl_EwalletMethod3" xml:space="preserve">
+    <value>2. Tap 'Scan'.</value>
+  </data>
+  <data name="Lbl_EwalletMethod4" xml:space="preserve">
+    <value>3. Scan the QR code displayed on the screen to complete your payment.</value>
+  </data>
+  <data name="Lbl_EwalletPayment" xml:space="preserve">
+    <value>Scan the QR code below to pay using your e-Wallet or bank app</value>
+  </data>
+  <data name="Lbl_GiftVoucher" xml:space="preserve">
+    <value>Gift Voucher</value>
+  </data>
+  <data name="Lbl_GTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Lbl_Home" xml:space="preserve">
+    <value>HELLO</value>
+  </data>
+  <data name="Lbl_HomeHow" xml:space="preserve">
+    <value>How would you like to get your food?</value>
+  </data>
+  <data name="Lbl_Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Lbl_InsertPin" xml:space="preserve">
+    <value>Please insert or tap your card at the payment terminal.</value>
+  </data>
+  <data name="Lbl_InvalidMenu" xml:space="preserve">
+    <value>Some changes on voucher or menu.Please Check.</value>
+  </data>
+  <data name="Lbl_InvalidPromoCode" xml:space="preserve">
+    <value>Promo Code not found!</value>
+  </data>
+  <data name="Lbl_InvalidQr" xml:space="preserve">
+    <value>Invalid Qr Code!</value>
+  </data>
+  <data name="Lbl_ItemAdded" xml:space="preserve">
+    <value>Item Added</value>
+  </data>
+  <data name="Lbl_KadCC" xml:space="preserve">
+    <value>Credit / Debit Card</value>
+  </data>
+  <data name="Lbl_Login" xml:space="preserve">
+    <value>Log In</value>
+  </data>
+  <data name="Lbl_Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Lbl_MemberLogin" xml:space="preserve">
+    <value>Log into your membership to earn rewards.</value>
+  </data>
+  <data name="Lbl_Or" xml:space="preserve">
+    <value>Or</value>
+  </data>
+  <data name="Lbl_OrderNumber" xml:space="preserve">
+    <value>Your Order Number</value>
+  </data>
+  <data name="Lbl_PaymentFail" xml:space="preserve">
+    <value>Payment fail. Please retry payment.</value>
+  </data>
+  <data name="Lbl_PaymentMethod" xml:space="preserve">
+    <value>Payment Method</value>
+  </data>
+  <data name="Lbl_PickupOrder" xml:space="preserve">
+    <value>Please pick up order from the counter.</value>
+  </data>
+  <data name="Lbl_PopUpPromoCode" xml:space="preserve">
+    <value>Please enter your promo code</value>
+  </data>
+  <data name="Lbl_PromoCode" xml:space="preserve">
+    <value>Promo Code</value>
+  </data>
+  <data name="Lbl_Recommend" xml:space="preserve">
+    <value>Recommend for you!</value>
+  </data>
+  <data name="Lbl_Rounding" xml:space="preserve">
+    <value>Rounding</value>
+  </data>
+  <data name="Lbl_ScanAndLogin" xml:space="preserve">
+    <value>Scan and log in to your membership to earn rewards.</value>
+  </data>
+  <data name="Lbl_ScanQr" xml:space="preserve">
+    <value>Please scan your membership QR code at the scanner.</value>
+  </data>
+  <data name="Lbl_SelectLanguage" xml:space="preserve">
+    <value>Hello! Choose Your Language To Begin</value>
+  </data>
+  <data name="Lbl_SelectOrderType" xml:space="preserve">
+    <value>How Would You Like To Enjoy Your Meal?</value>
+  </data>
+  <data name="Lbl_ShowVoucher" xml:space="preserve">
+    <value>Show Voucher</value>
+  </data>
+  <data name="Lbl_Skip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="Lbl_Subtotal" xml:space="preserve">
+    <value>Subtotal</value>
+  </data>
+  <data name="Lbl_SuccessOrder" xml:space="preserve">
+    <value>Successfully Earn</value>
+  </data>
+  <data name="Lbl_Takeaway" xml:space="preserve">
+    <value>Takeaway</value>
+  </data>
+  <data name="Lbl_TextVoucher" xml:space="preserve">
+    <value>Do You Have A Voucher Code?</value>
+  </data>
+  <data name="Lbl_TimeOut" xml:space="preserve">
+    <value>Session Timeout</value>
+  </data>
+  <data name="Lbl_TimeoutMsj" xml:space="preserve">
+    <value>Do you still want to proceed?</value>
+  </data>
+  <data name="Lbl_UpgradeCombo" xml:space="preserve">
+    <value>Combo Set</value>
+  </data>
+  <data name="Lbl_UpgradeComboL" xml:space="preserve">
+    <value>Combo (L)</value>
+  </data>
+  <data name="Lbl_UpgradeComboR" xml:space="preserve">
+    <value>Combo (R)</value>
+  </data>
+  <data name="Lbl_Upsize" xml:space="preserve">
+    <value>Large Combo</value>
+  </data>
+  <data name="Lbl_UseNow" xml:space="preserve">
+    <value>Use Now</value>
+  </data>
+  <data name="Lbl_ValidUntil" xml:space="preserve">
+    <value>Valid until</value>
+  </data>
+  <data name="Lbl_ViewOrder" xml:space="preserve">
+    <value>Review &amp; Pay →</value>
+  </data>
+  <data name="Lbl_Voucher" xml:space="preserve">
+    <value>Voucher</value>
+  </data>
+  <data name="Lbl_VoucherAmount" xml:space="preserve">
+    <value>Voucher Amount</value>
+  </data>
+  <data name="Lbl_Welcome" xml:space="preserve">
+    <value>Welcome,</value>
+  </data>
+  <data name="Lbl_YourAmount" xml:space="preserve">
+    <value>YOUR TOTAL AMOUNT</value>
+  </data>
+  <data name="Lbl_YourOrder" xml:space="preserve">
+    <value>Your Order</value>
+  </data>
+</root>

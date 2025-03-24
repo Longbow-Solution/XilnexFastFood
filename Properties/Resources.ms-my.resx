@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Lbl_AddOn" xml:space="preserve">
+    <value>Selesaikan Pesanan Anda Dengan Menu Tambahan Popular Kami!</value>
+  </data>
+  <data name="Lbl_AddToCart" xml:space="preserve">
+    <value>Buat Pesanan</value>
+  </data>
+  <data name="Lbl_Ads" xml:space="preserve">
+    <value>Sentuh skrin untuk mula</value>
+  </data>
+  <data name="Lbl_Back" xml:space="preserve">
+    <value>Kembali ke menu</value>
+  </data>
+  <data name="Lbl_BackOnly" xml:space="preserve">
+    <value>Batal</value>
+  </data>
+  <data name="Lbl_BtnClose" xml:space="preserve">
+    <value>Tutup</value>
+  </data>
+  <data name="Lbl_BtnDownsize" xml:space="preserve">
+    <value>Tukar kepada Biasa</value>
+  </data>
+  <data name="Lbl_BtnPromoCode" xml:space="preserve">
+    <value>Kod Promosi</value>
+  </data>
+  <data name="Lbl_BtnUpCombo" xml:space="preserve">
+    <value>Tukar kepada Kombo</value>
+  </data>
+  <data name="Lbl_BtnUpsize" xml:space="preserve">
+    <value>Tukar Kepada Besar</value>
+  </data>
+  <data name="Lbl_BtnYes" xml:space="preserve">
+    <value>Teruskan</value>
+  </data>
+  <data name="Lbl_CancelContent" xml:space="preserve">
+    <value>Item anda dalam troli akan dikosongkan. Adakah anda ingin teruskan?</value>
+  </data>
+  <data name="Lbl_CancelHeader" xml:space="preserve">
+    <value>Batal</value>
+  </data>
+  <data name="Lbl_CancelOrder" xml:space="preserve">
+    <value>Pesan Semula</value>
+  </data>
+  <data name="Lbl_Cash" xml:space="preserve">
+    <value>Pembayaran Dengan Wang Tunai</value>
+  </data>
+  <data name="Lbl_CC" xml:space="preserve">
+    <value>Pembayaran Dengan Kad Kredit / Debit</value>
+  </data>
+  <data name="Lbl_Checkout" xml:space="preserve">
+    <value>BAYAR SEKARANG</value>
+  </data>
+  <data name="Lbl_CheckVoucher" xml:space="preserve">
+    <value>Beberapa perubahan pada baucar. Tolong periksa.</value>
+  </data>
+  <data name="Lbl_CollectPoints" xml:space="preserve">
+    <value>Mata Terkumpul</value>
+  </data>
+  <data name="Lbl_Confirmation" xml:space="preserve">
+    <value>Pengesahan</value>
+  </data>
+  <data name="Lbl_ContainPromoCode" xml:space="preserve">
+    <value>Ada kod promosi untuk digunakan?</value>
+  </data>
+  <data name="Lbl_ContinueOrder" xml:space="preserve">
+    <value>TAMBAH LAGI</value>
+  </data>
+  <data name="Lbl_DineIn" xml:space="preserve">
+    <value>Makan Sini</value>
+  </data>
+  <data name="Lbl_DoneOnly" xml:space="preserve">
+    <value>Selesai</value>
+  </data>
+  <data name="Lbl_DoneOrder" xml:space="preserve">
+    <value>Selesai Tempahan</value>
+  </data>
+  <data name="Lbl_Download" xml:space="preserve">
+    <value>Muat turun dan daftar sebagai Rooty Buddy!</value>
+  </data>
+  <data name="Lbl_DownloadHere" xml:space="preserve">
+    <value>Muat Turun</value>
+  </data>
+  <data name="Lbl_Downsize" xml:space="preserve">
+    <value>Tukar Kepada Kombo Biasa!</value>
+  </data>
+  <data name="Lbl_Edit" xml:space="preserve">
+    <value>Ubah</value>
+  </data>
+  <data name="Lbl_EnterPromoCode" xml:space="preserve">
+    <value>Sila masukkan kod promosi!</value>
+  </data>
+  <data name="Lbl_Error" xml:space="preserve">
+    <value>Ralat Ditemui</value>
+  </data>
+  <data name="Lbl_ErrorAssist" xml:space="preserve">
+    <value>Maaf, kami mengalami masalah. Sila hubungi kakitangan kami untuk mendapatkan bantuan.</value>
+  </data>
+  <data name="Lbl_ErrorAssist2" xml:space="preserve">
+    <value>Maaf, ada masalah. Sila hubungi kakitangan kami untuk mendapatkan bantuan.</value>
+  </data>
+  <data name="Lbl_ErrorTryAgain" xml:space="preserve">
+    <value>Maaf, kami mengalami masalah. Sila cuba lagi.</value>
+  </data>
+  <data name="Lbl_ErrorTryAgain2" xml:space="preserve">
+    <value>Maaf, ada masalah. Sila cuba lagi.</value>
+  </data>
+  <data name="Lbl_Ewallet" xml:space="preserve">
+    <value>Pembayaran Dengan E-Dompet</value>
+  </data>
+  <data name="Lbl_EwalletMethod1" xml:space="preserve">
+    <value>Cara Membayar:</value>
+  </data>
+  <data name="Lbl_EwalletMethod2" xml:space="preserve">
+    <value>1. Buka e-Dompet atau aplikasi bank anda.</value>
+  </data>
+  <data name="Lbl_EwalletMethod3" xml:space="preserve">
+    <value>2. Ketik 'Imbas'.</value>
+  </data>
+  <data name="Lbl_EwalletMethod4" xml:space="preserve">
+    <value>3. Imbas kod QR yang dipaparkan pada skrin untuk melengkapkan pembayaran anda.</value>
+  </data>
+  <data name="Lbl_EwalletPayment" xml:space="preserve">
+    <value>Imbas kod QR di bawah untuk membayar menggunakan e-Dompet atau aplikasi bank anda</value>
+  </data>
+  <data name="Lbl_GiftVoucher" xml:space="preserve">
+    <value>Baucar Hadiah</value>
+  </data>
+  <data name="Lbl_GTotal" xml:space="preserve">
+    <value>Jumlah</value>
+  </data>
+  <data name="Lbl_Home" xml:space="preserve">
+    <value>HALO</value>
+  </data>
+  <data name="Lbl_HomeHow" xml:space="preserve">
+    <value>Bagaimana anda ingin mendapatkan makanan anda ?</value>
+  </data>
+  <data name="Lbl_Info" xml:space="preserve">
+    <value>Informasi</value>
+  </data>
+  <data name="Lbl_InsertPin" xml:space="preserve">
+    <value>Sila masukkan atau ketik kad anda di terminal pembayaran.</value>
+  </data>
+  <data name="Lbl_InvalidMenu" xml:space="preserve">
+    <value>Beberapa perubahan pada baucar atau menu.Sila Semak.</value>
+  </data>
+  <data name="Lbl_InvalidPromoCode" xml:space="preserve">
+    <value>Kod Promosi tidak ditemui!</value>
+  </data>
+  <data name="Lbl_InvalidQr" xml:space="preserve">
+    <value>Kod Qr tidak sah!</value>
+  </data>
+  <data name="Lbl_ItemAdded" xml:space="preserve">
+    <value>Item Ditambah</value>
+  </data>
+  <data name="Lbl_KadCC" xml:space="preserve">
+    <value>Kad Kredit / Debit</value>
+  </data>
+  <data name="Lbl_Login" xml:space="preserve">
+    <value>Log Masuk</value>
+  </data>
+  <data name="Lbl_Logout" xml:space="preserve">
+    <value>Log Keluar</value>
+  </data>
+  <data name="Lbl_MemberLogin" xml:space="preserve">
+    <value>Log masuk keahlian anda untuk dapatkan ganjaran.</value>
+  </data>
+  <data name="Lbl_Or" xml:space="preserve">
+    <value>Atau</value>
+  </data>
+  <data name="Lbl_OrderNumber" xml:space="preserve">
+    <value>Nombor Pesanan Anda</value>
+  </data>
+  <data name="Lbl_PaymentFail" xml:space="preserve">
+    <value>Pembayaran gagal, sila cuba lagi.</value>
+  </data>
+  <data name="Lbl_PaymentMethod" xml:space="preserve">
+    <value>Kaedah Pembayaran</value>
+  </data>
+  <data name="Lbl_PickupOrder" xml:space="preserve">
+    <value>Sila ambil pesanan dari kaunter.</value>
+  </data>
+  <data name="Lbl_PopUpPromoCode" xml:space="preserve">
+    <value>Sila masukkan kod promosi anda</value>
+  </data>
+  <data name="Lbl_PromoCode" xml:space="preserve">
+    <value>Kod Promosi</value>
+  </data>
+  <data name="Lbl_Recommend" xml:space="preserve">
+    <value>Disyorkan untuk anda!</value>
+  </data>
+  <data name="Lbl_Rounding" xml:space="preserve">
+    <value>Bundaran</value>
+  </data>
+  <data name="Lbl_ScanAndLogin" xml:space="preserve">
+    <value>Imbas dan daftar keahlian anda untuk mendapatkan ganjaran.</value>
+  </data>
+  <data name="Lbl_ScanQr" xml:space="preserve">
+    <value>Sila imbas kod QR keahlian anda di pengimbas.</value>
+  </data>
+  <data name="Lbl_SelectLanguage" xml:space="preserve">
+    <value>Halo! Pilih Bahasa Anda Untuk Memulakan</value>
+  </data>
+  <data name="Lbl_SelectOrderType" xml:space="preserve">
+    <value>Bagaimana Anda Ingin Menikmati Hidangan Anda?</value>
+  </data>
+  <data name="Lbl_ShowVoucher" xml:space="preserve">
+    <value>Buka Baucar</value>
+  </data>
+  <data name="Lbl_Skip" xml:space="preserve">
+    <value>Langkau</value>
+  </data>
+  <data name="Lbl_Subtotal" xml:space="preserve">
+    <value>Subjumlah (Termasuk Tax &amp; Fi)</value>
+  </data>
+  <data name="Lbl_SuccessOrder" xml:space="preserve">
+    <value>Berjaya Memperolehi</value>
+  </data>
+  <data name="Lbl_Takeaway" xml:space="preserve">
+    <value>Bawa Pulang</value>
+  </data>
+  <data name="Lbl_TextVoucher" xml:space="preserve">
+    <value>Adakah Anda Mempunyai Kod Baucar?</value>
+  </data>
+  <data name="Lbl_TimeOut" xml:space="preserve">
+    <value>Sesi Masa Tamat</value>
+  </data>
+  <data name="Lbl_TimeoutMsj" xml:space="preserve">
+    <value>Adakah anda ingin teruskan?</value>
+  </data>
+  <data name="Lbl_UpgradeCombo" xml:space="preserve">
+    <value>Set Kombo</value>
+  </data>
+  <data name="Lbl_UpgradeComboL" xml:space="preserve">
+    <value>Kombo (L)</value>
+  </data>
+  <data name="Lbl_UpgradeComboR" xml:space="preserve">
+    <value>Kombo (R)</value>
+  </data>
+  <data name="Lbl_Upsize" xml:space="preserve">
+    <value>Kombo Besar</value>
+  </data>
+  <data name="Lbl_UseNow" xml:space="preserve">
+    <value>Guna</value>
+  </data>
+  <data name="Lbl_ValidUntil" xml:space="preserve">
+    <value>Sah sehingga</value>
+  </data>
+  <data name="Lbl_ViewOrder" xml:space="preserve">
+    <value>Lihat Pesanan</value>
+  </data>
+  <data name="Lbl_Voucher" xml:space="preserve">
+    <value>Baucar</value>
+  </data>
+  <data name="Lbl_VoucherAmount" xml:space="preserve">
+    <value>Amaun Baucar</value>
+  </data>
+  <data name="Lbl_Welcome" xml:space="preserve">
+    <value>Selamat datang, </value>
+  </data>
+  <data name="Lbl_YourAmount" xml:space="preserve">
+    <value>JUMLAH ANDA</value>
+  </data>
+  <data name="Lbl_YourOrder" xml:space="preserve">
+    <value>Pesanan Anda</value>
+  </data>
+</root>

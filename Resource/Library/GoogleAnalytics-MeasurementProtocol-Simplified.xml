@@ -1,0 +1,512 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GoogleAnalytics-MeasurementProtocol-Simplified</name>
+    </assembly>
+    <members>
+        <member name="T:GoogleAnalytics_MeasurementProtocol_Simplified.AdditionalParameters.CustomDaM">
+            <summary>
+            Custom Dimension and Metric Class.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.AdditionalParameters.CustomDaM.AddCustomDimensionParam(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.String,System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="igar"></param>
+            <param name="dimensionValue"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.AdditionalParameters.CustomDaM.AddCustomMetricParam(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.Int32,System.Byte)">
+            <summary>
+            
+            </summary>
+            <param name="igar"></param>
+            <param name="metricValue"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:GoogleAnalytics_MeasurementProtocol_Simplified.AdditionalParameters.EnchancedECClass">
+            <summary>
+            Enchanced Ecommerce Class. Not recommended when using either Transaction or Item request hit or both.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.AdditionalParameters.EnchancedECClass.AddTransactionParams(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.String,System.String,System.Decimal,System.Decimal,System.Decimal,System.String)">
+            <summary>
+            Add Transaction parameters to the request.
+            </summary>
+            <param name="igar">The target request to add in the parameters.</param>
+            <param name="id">Transaction ID.</param>
+            <param name="affiliation">Affiliation name or store name. </param>
+            <param name="revenue">Total revenue of the transaction.</param>
+            <param name="shipping">Total shipping cost of the transaction.</param>
+            <param name="tax">Total tax cost of the transaction.</param>
+            <param name="coupon">Coupon code redeemed with the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.AdditionalParameters.EnchancedECClass.AddProductItemParams(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.Byte,System.String,System.String,System.Decimal,System.Int32,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Add Purchased Product Item parameters to the request.
+            </summary>
+            <param name="igar">The target request to add in the parameters.</param>
+            <param name="itemIndex">Product index</param>
+            <param name="sku">SKU of the product.</param>
+            <param name="name">Name of the product.</param>
+            <param name="price">Unit price of the product.</param>
+            <param name="quantity">Quantity of a product.</param>
+            <param name="brand">Brand associated with the product.</param>
+            <param name="category">Category to which the product belongs.</param>
+            <param name="variant">Variant of the product.</param>
+            <param name="coupon">Coupon code associated with a product.</param>
+            <param name="position">Product's position in a list or collection.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.AdditionalParameters.EnchancedECClass.AddCheckoutStepParams(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.Int32,System.String)">
+            <summary>
+            Add Checkout parameters to the request.
+            </summary>
+            <param name="igar">The target request to add in the parameters.</param>
+            <param name="step">Step number in a checkout funnel.</param>
+            <param name="option">Additional information about a checkout step.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.AdditionalParameters.EnchancedECClass.AddProductActionListParam(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.String)">
+            <summary>
+            Add Product Action List parameter to the request.
+            </summary>
+            <param name="igar">The target request to add in the parameters.</param>
+            <param name="actionList">The list or collection from which a product action occurred.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.AdditionalParameters.EnchancedECClass.AddProductAction(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.String)">
+            <summary>
+            Add Product Action to the request.
+            </summary>
+            <param name="igar">The target request to add in the parameters.</param>
+            <param name="type">Type of product action. Only certain keywords are acceptable, as defined by Google.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.AdditionalParameters.EnchancedECClass.AddCurrencyCode(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest)">
+            <summary>
+            Add Currency Code to the request. The value is taken the 'Currency Code' variable.
+            </summary>
+            <param name="igar">The target request to add in the parameters.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.AdditionalParameters.EnchancedECClass.AddPromotionParams(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.Byte,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Add Promotion parameters to the request. No Product Action Type is assigned from here.
+            </summary>
+            <param name="igar">The target request to add in the parameters.</param>
+            <param name="promotionIndex">Promotion index</param>
+            <param name="id">Promotion ID.</param>
+            <param name="name">Name of the promotion.</param>
+            <param name="creative">Creative associated with the promotion.</param>
+            <param name="position">Position of the creative.</param>
+            <param name="action">Specifies the role of the promotions included in a hit.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main">
+            <summary>
+            Main Class for GAMPS. All common methods are found here and all request classes derived from here.
+            </summary>
+        </member>
+        <member name="P:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.GeolocationTag">
+            <summary>
+            Geolocation Tag. Must be in a two-letter format (e.g: "MY") or using Google's Criteria ID. When 'null', geolocation override parameter will not be added to any request.
+            </summary>
+        </member>
+        <member name="P:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.CurrencyCode">
+            <summary>
+            Currency code. Must be in a three-letter format (e.g: "MYR"). When 'null', currency code parameter will not be added to any request.
+            </summary>
+        </member>
+        <member name="P:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.TrackingId">
+            <summary>
+            Current Tracking ID being used, can be used for debugging, logging, or overriding the existing value. Default value is 'null' and must be assigned a value first!
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.#ctor">
+            <summary>
+            Constructs the GAMPS_Main Class.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.#ctor(System.String)">
+            <summary>
+            Constructs the GAMPS_Main Class with the given Tracking ID.
+            </summary>
+            <param name="track_id">A Tracking ID unique to each property provided by Google Analytics</param>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.GenerateBatchRequest(System.Collections.Generic.IEnumerable{GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest})">
+            <summary>
+            Create and return a batch request
+            </summary>
+            <param name="list">Requests in a collection of List.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.SetClientId(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,GoogleMeasurementProtocol.Parameters.User.ClientId)">
+            <summary>
+            Add Client ID parameter to the request.
+            </summary>
+            <param name="igar">The target request.</param>
+            <param name="cid">Client ID in ClientId form</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.SetClientId(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.String)">
+            <summary>
+            Add Client ID parameter to the request.
+            </summary>
+            <param name="igar">The target request.</param>
+            <param name="cid">Client ID in string form</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.GetClientId(System.String)">
+            <summary>
+            Convert a string variable to a ClientId type.
+            </summary>
+            <param name="cid">Client ID in string form.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.SetUserId(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,GoogleMeasurementProtocol.Parameters.User.UserId)">
+            <summary>
+            Add User ID parameter to the request.
+            </summary>
+            <param name="igar">The target request.</param>
+            <param name="uid">User ID in UserId form.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.SetUserId(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.String)">
+            <summary>
+            Add User ID parameter to the request.
+            </summary>
+            <param name="igar">The target request.</param>
+            <param name="uid">User ID in string form.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.GetUserId(System.String)">
+            <summary>
+            Convert a string variable to a UserId type.
+            </summary>
+            <param name="uid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.StartSession(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest)">
+            <summary>
+            Add "start" Session Control parameter to the request. Signifies a beginning to a session.
+            </summary>
+            <param name="igar">The target request.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.EndSession(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest)">
+            <summary>
+            Add "end" Session Control parameter to the request. Signifies an ending to a session.
+            </summary>
+            <param name="igar">The target request.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.SetAsNonInteractionHit(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest)">
+            <summary>
+            Add "Non-interaction hit" parameter to the request. This sets the request as a non-interaction hit instead of as a user-interaction hit.
+            </summary>
+            <param name="igar">The target request.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.GAMPS_Main.SetUserLanguage(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.String)">
+            <summary>
+            Add User Language parameter to the request.
+            </summary>
+            <param name="igar">The target request.</param>
+            <param name="lang">Language tag define by ISO 639-1 and ISO 639-2.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.EventReqClass">
+            <summary>
+            Event Request Class.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.EventReqClass.#ctor">
+            <summary>
+            Initialise the Event request service.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.EventReqClass.GetEventRequest(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Get event request with Client ID.
+            </summary>
+            <param name="category">Event category</param>
+            <param name="action">Event action</param>
+            <param name="label">Event label</param>
+            <param name="value">Event value</param>
+            <param name="cid">Client ID</param>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.EventReqClass.GetEventRequestWithUserId(System.String,System.String,GoogleMeasurementProtocol.Parameters.User.UserId,System.String,System.Int32)">
+            <summary>
+            Get event request with User ID.
+            </summary>
+            <param name="category">Event category</param>
+            <param name="action">Event action</param>
+            <param name="label">Event label</param>
+            <param name="value">Event value</param>
+            <param name="uid">User ID</param>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.EventReqClass.AddEventParams(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.String,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            Add event parameters to the request.
+            </summary>
+            <param name="igar">The target request to add in the parameters.</param>
+            <param name="category">Event category</param>
+            <param name="action">Event action</param>
+            <param name="label">Event label</param>
+            <param name="value">Event value</param>
+            <returns></returns>
+        </member>
+        <member name="T:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.ExceptionReqClass">
+            <summary>
+            Exception Request Class.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.ExceptionReqClass.GetExceptionRequest(System.String,System.Boolean,System.String)">
+            <summary>
+            Get exception request with Client ID
+            </summary>
+            <param name="description">Description of the exception.</param>
+            <param name="isFatal">Fatality of the exception.</param>
+            <param name="cid">Client ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.ExceptionReqClass.GetExceptionRequestWithUserId(System.String,System.Boolean,System.String)">
+            <summary>
+            Get exception request with User ID
+            </summary>
+            <param name="description">Description of the exception.</param>
+            <param name="isFatal">Fatality of the exception.</param>
+            <param name="uid">User ID.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.ItemReqClass">
+            <summary>
+            Product Item Request Class. Not recommended for Enchanced Ecommerce use.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.ItemReqClass.#ctor">
+            <summary>
+            Initialise the Item request service.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.ItemReqClass.GetItemRequest(System.String,System.String,System.String,System.Decimal,System.Int32,System.String,System.String)">
+            <summary>
+            Get e-commerce item request with Client ID.
+            </summary>
+            <param name="tid">Transaction ID</param>
+            <param name="name">Name of the item.</param>
+            <param name="cid">Client ID</param>
+            <param name="price">Price of one unit. If the item is free or has no value, this parameter will not be included.</param>
+            <param name="quantity">Number of item(s) purchased.</param>
+            <param name="code">Item code or SKU.</param>
+            <param name="category">Item category where it belongs to.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.ItemReqClass.GetItemRequestWithUserId(System.String,System.String,GoogleMeasurementProtocol.Parameters.User.UserId,System.Decimal,System.Int32,System.String,System.String)">
+            <summary>
+            Get e-commerce item request with User ID.
+            </summary>
+            <param name="tid">Transaction ID</param>
+            <param name="name">Name of the item.</param>
+            <param name="uid">User ID</param>
+            <param name="price">Price of one unit. If the item is free or has no value, this parameter will not be included.</param>
+            <param name="quantity">Number of item(s) purchased.</param>
+            <param name="code">Item code or SKU.</param>
+            <param name="category">Item category where it belongs to.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.PageViewReqClass">
+            <summary>
+            Pageview Request Class. Necessary for web applications and optional for non-web applications.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.PageViewReqClass.#ctor">
+            <summary>
+            Initialise the Pageview request service.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.PageViewReqClass.GetPageViewRequest(System.String,System.String,System.String,System.String)">
+            <summary>
+            Get pageview request with Client ID.
+            </summary>
+            <param name="hostname">Host name of where the page is hosted.</param>
+            <param name="path">Path name of the page. Required for pageview hit.</param>
+            <param name="title">Name or title of the page.</param>
+            <param name="cid">Client ID.</param>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.PageViewReqClass.GetPageViewRequestWithUserId(System.String,System.String,GoogleMeasurementProtocol.Parameters.User.UserId,System.String)">
+            <summary>
+            Get pageview request with User ID.
+            </summary>
+            <param name="hostname">Host name of where the page is hosted.</param>
+            <param name="path">Path name of the page. Required for pageview hit.</param>
+            <param name="title">Name or title of the page.</param>
+            <param name="uid">User ID.</param>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.PageViewReqClass.AddPageViewParams(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.String,System.String,System.String,System.String)">
+            <summary>
+            Add pageview parameters to the request.
+            </summary>
+            <param name="igar">The target request to add in the parameters.</param>
+            <param name="path">Path name of the page. Required for pageview hit.</param>
+            <param name="url">URL link of the page.</param>
+            <param name="hostname">Host name of where the page is hosted.</param>
+            <param name="title">Name or title of the page.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.ScreenviewReqClass">
+            <summary>
+            Screenview Request Class with Application Parameters. Necessary for non-web applications and optional for web applications.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.ScreenviewReqClass.GetScreenviewRequest(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Get screenview request with Client ID.
+            </summary>
+            <param name="screenName">Screen name. Required for Screenview hit.</param>
+            <param name="cid">Client ID.</param>
+            <param name="appName">Application name. Required for Screenview hit.</param>
+            <param name="appId">Application identifier.</param>
+            <param name="appVersion">Application version.</param>
+            <param name="appInstallerId">Application installer identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.ScreenviewReqClass.GetScreenviewRequestWithUserId(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Get screenview request with User ID.
+            </summary>
+            <param name="screenName">Screen name. Required for Screenview hit.</param>
+            <param name="uid">User ID.</param>
+            <param name="appName">Application name. Required for Screenview hit.</param>
+            <param name="appId">Application identifier.</param>
+            <param name="appVersion">Application version.</param>
+            <param name="appInstallerId">Application installer identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.ScreenviewReqClass.AddScreenviewParam(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Add screenview and application parameters to the request.
+            </summary>
+            <param name="igar">The target request to add in the parameters.</param>
+            <param name="screenName">Screen name. Required for Screenview hit.</param>
+            <param name="appName">Application name. Required for Screenview hit.</param>
+            <param name="appId">Application identifier.</param>
+            <param name="appVersion">Application version.</param>
+            <param name="appInstallerId">Application installer identifier.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.SocialReqClass">
+            <summary>
+            Social Request Class. Relates to using social media platforms.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.SocialReqClass.GetSocialRequest(System.String,System.String,System.String,System.String)">
+            <summary>
+            Get social interaction request with Client ID.
+            </summary>
+            <param name="socialNetwork">Name of the social network service.</param>
+            <param name="socialAction">Social interaction action.</param>
+            <param name="socialActionTarget">Target of the social interaction.</param>
+            <param name="cid">Client ID.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.SocialReqClass.GetSocialRequestWithUserId(System.String,System.String,System.String,System.String)">
+            <summary>
+            Get social interaction request with User ID.
+            </summary>
+            <param name="socialNetwork">Name of the social network service.</param>
+            <param name="socialAction">Social interaction action.</param>
+            <param name="socialActionTarget">Target of the social interaction.</param>
+            <param name="uid">User ID.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.TransactionReqClass">
+            <summary>
+            Transaction Request Class. Not recommended for Enchanced Ecommerce use.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.TransactionReqClass.#ctor">
+            <summary>
+            Initialise the Transaction request service.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.TransactionReqClass.GetTransactionRequest(System.String,System.String,System.String,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Get e-commerce transaction request with Client ID.
+            </summary>
+            <param name="tid">Transaction ID</param>
+            <param name="cid">Client ID</param>
+            <param name="affiliation">Affiliation or store name where the transaction is taken place.</param>
+            <param name="revenue">Total revenue of the transaction.</param>
+            <param name="shipping">Total shipping cost of the transaction.</param>
+            <param name="tax">Total tax of the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.TransactionReqClass.GetTransactionRequestWithUserId(System.String,GoogleMeasurementProtocol.Parameters.User.UserId,System.String,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Get e-commerce transaction request with User ID.
+            </summary>
+            <param name="tid">Transaction ID</param>
+            <param name="uid">User ID</param>
+            <param name="affiliation">Affiliation or store name where the transaction is taken place.</param>
+            <param name="revenue">Total revenue of the transaction.</param>
+            <param name="shipping">Total shipping cost of the transaction.</param>
+            <param name="tax">Total tax of the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="T:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.UserTimingReqClass">
+            <summary>
+            User Timing Request Class.
+            </summary>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.UserTimingReqClass.GetUserTimingRequest(System.String,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Get user timing request with Client ID.
+            </summary>
+            <param name="category">Specifies the user timing category.</param>
+            <param name="varName">Specifies the user timing variable.</param>
+            <param name="time">Specifies the user timing value. The value is in milliseconds.</param>
+            <param name="cid">Client ID.</param>
+            <param name="label">Specifies the user timing label.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.UserTimingReqClass.GetUserTimingRequestWithUserId(System.String,System.String,System.Int32,System.String,System.String)">
+            <summary>
+            Get user timing request with User ID.
+            </summary>
+            <param name="category">Specifies the user timing category.</param>
+            <param name="varName">Specifies the user timing variable.</param>
+            <param name="time">Specifies the user timing value. The value is in milliseconds.</param>
+            <param name="uid">User ID.</param>
+            <param name="label">Specifies the user timing label.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.UserTimingReqClass.AddAdditionalUTParams1(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Add additional following parameters to the request: Page load time, DNS time, page download time, redirect response time.
+            </summary>
+            <param name="igar">The target request to add in the parameters.</param>
+            <param name="pageLoadTime">Specifies the time it took for a page to load. The value is in milliseconds.</param>
+            <param name="dnsTime">Specifies the time it took to do a DNS lookup. The value is in milliseconds.</param>
+            <param name="pageDownloadTime">Specifies the time it took for the page to be downloaded. The value is in milliseconds.</param>
+            <param name="redirResponseTime">Specifies the time it took for any redirects to happen. The value is in milliseconds.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GoogleAnalytics_MeasurementProtocol_Simplified.RequestHits.UserTimingReqClass.AddAdditionalUTParams2(GoogleMeasurementProtocol.Requests.IGoogleAnalyticsRequest,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Add additional following parameters to the request: TCP Connect time, server response time, DOM interactive time, content load time.
+            </summary>
+            <param name="igar">The target request to add in the parameters.</param>
+            <param name="connectTime">Specifies the time it took for a TCP connection to be made. The value is in milliseconds.</param>
+            <param name="serverResTime">Specifies the time it took for the server to respond after the connect time. The value is in milliseconds.</param>
+            <param name="domInterTime">Specifies the time it took for Document.readyState to be 'interactive'. The value is in milliseconds.</param>
+            <param name="contentLoadTime">Specifies the time it took for the DOMContentLoaded Event to fire. The value is in milliseconds.</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

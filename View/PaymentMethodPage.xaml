@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="LFFSSK.View.PaymentMethodPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+             xmlns:local="clr-namespace:LFFSSK.View"
+             xmlns:pm="clr-namespace:LFFSSK.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="1920" d:DesignWidth="1080">
+    <Grid>
+
+        <pm:PaymentByCardView Grid.Row="0" Panel.ZIndex="99" Width="1080">
+            <pm:PaymentByCardView.Style>
+                <Style TargetType="{x:Type UserControl}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ShowCardPayment, UpdateSourceTrigger=PropertyChanged}" Value="Visible" >
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </pm:PaymentByCardView.Style>
+        </pm:PaymentByCardView>
+
+        <pm:PaymentByQRView Grid.Row="0" Panel.ZIndex="99"> 
+            <pm:PaymentByQRView.Style>
+                <Style TargetType="{x:Type UserControl}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ShowQRPayment, UpdateSourceTrigger=PropertyChanged}" Value="Visible" >
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </pm:PaymentByQRView.Style>
+        </pm:PaymentByQRView>
+
+        <pm:PaymentProcessingView Panel.ZIndex="4" >
+            <pm:PaymentProcessingView.Style>
+                <Style TargetType="{x:Type UserControl}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ShowPaymentProcessing, UpdateSourceTrigger=PropertyChanged}" Value="Visible" >
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </pm:PaymentProcessingView.Style>
+        </pm:PaymentProcessingView>
+
+        <pm:SendOrderView Panel.ZIndex="4" >
+            <pm:SendOrderView.Style>
+                <Style TargetType="{x:Type UserControl}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ShowSendingKitchen, UpdateSourceTrigger=PropertyChanged}" Value="Visible" >
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </pm:SendOrderView.Style>
+        </pm:SendOrderView>
+
+        <StackPanel Orientation="Vertical">            
+            <!--new_ui_payment-->
+
+            <Image Source="{Binding AnWLogo,UpdateSourceTrigger=PropertyChanged}" Height="156" Width="156" Margin="0,60"/>
+
+            <Border BorderBrush="#10C1A0" BorderThickness="0,0,0,3" Width="458">
+                <TextBlock Text="{Binding Lbl_PaymentMethod,UpdateSourceTrigger=PropertyChanged}" FontSize="60" TextAlignment="Center"/>
+            </Border>
+            <TextBlock Text="{Binding Lbl_CC,UpdateSourceTrigger=PropertyChanged}" FontSize="40" HorizontalAlignment="Center" FontFamily="{StaticResource BaseFontFamily}" Margin="0,70,0,30"/>
+
+            <Button Style="{StaticResource BtnPaymentMethod}" HorizontalAlignment="Center" Command="{Binding BtnPayment}" CommandParameter="KCC" Margin="0,20,0,50">
+                <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
+                    <Image Source="{Binding Visa, UpdateSourceTrigger=PropertyChanged}" Width="186" Height="60" RenderOptions.BitmapScalingMode="LowQuality" PresentationOptions:Freeze="True">
+                        <Image.CacheMode>
+                            <BitmapCache PresentationOptions:Freeze="True"/>
+                        </Image.CacheMode>
+                    </Image>
+                    <Image Source="{Binding Master, UpdateSourceTrigger=PropertyChanged}" Width="95" Height="60" RenderOptions.BitmapScalingMode="LowQuality" PresentationOptions:Freeze="True">
+                        <Image.CacheMode>
+                            <BitmapCache PresentationOptions:Freeze="True"/>
+                        </Image.CacheMode>
+                    </Image>
+                    <Image Source="{Binding Card, UpdateSourceTrigger=PropertyChanged}" Width="95" Height="80"  RenderOptions.BitmapScalingMode="LowQuality" PresentationOptions:Freeze="True" Margin="30,0">
+                        <Image.CacheMode>
+                            <BitmapCache PresentationOptions:Freeze="True"/>
+                        </Image.CacheMode>
+                    </Image>
+                </StackPanel>
+            </Button>
+
+            <TextBlock Text="{Binding Lbl_Ewallet,UpdateSourceTrigger=PropertyChanged}" FontSize="40" Margin="0,0,0,20" FontFamily="{StaticResource BaseFontFamily}" HorizontalAlignment="Center"/>
+
+            <Grid HorizontalAlignment="Center" Margin="0,20,0,0">
+                <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Button Style="{StaticResource BtnPaymentMethodEW}" Margin="10" Command="{Binding BtnPayment}" CommandParameter="DUITNOW">
+                        <Image Source="/LFFSSK;component/Resource/LFFImages/duitnow.png" Width="150" RenderOptions.BitmapScalingMode="LowQuality" PresentationOptions:Freeze="True">
+                            <Image.CacheMode>
+                                <BitmapCache PresentationOptions:Freeze="True"/>
+                            </Image.CacheMode>
+                        </Image>
+                        <!--<Image Source="/LFFSSK;component/Resource/AnWImages/duitnow.png" Width="150"/>-->
+                    </Button>
+                    <Button Style="{StaticResource BtnPaymentMethodEW}" Margin="10" Command="{Binding BtnPayment}" CommandParameter="UNION">
+                        <Image Source="/LFFSSK;component/Resource/LFFImages/UnionPay.png" Width="150" RenderOptions.BitmapScalingMode="LowQuality" PresentationOptions:Freeze="True">
+                            <Image.CacheMode>
+                                <BitmapCache PresentationOptions:Freeze="True"/>
+                            </Image.CacheMode>
+                        </Image>
+                        <!--<Image Source="/LFFSSK;component/Resource/AnWImages/UnionPay.png" Width="150"/>-->
+                    </Button>
+                    <Button Style="{StaticResource BtnPaymentMethodEW}" Margin="10" Command="{Binding BtnPayment}" CommandParameter="ALIPAY">
+                        <Image Source="/LFFSSK;component/Resource/LFFImages/Alipay.png" Width="150" RenderOptions.BitmapScalingMode="LowQuality" PresentationOptions:Freeze="True">
+                            <Image.CacheMode>
+                                <BitmapCache PresentationOptions:Freeze="True"/>
+                            </Image.CacheMode>
+                        </Image>
+                        <!--<Image Source="/LFFSSK;component/Resource/AnWImages/Alipay.png" Width="150"/>-->
+                    </Button>
+                    <Button Style="{StaticResource BtnPaymentMethodEW}" Margin="10" Command="{Binding BtnPayment}" CommandParameter="ALIPAY+">
+                        <Image Source="/LFFSSK;component/Resource/LFFImages/Alipay+.png" Width="150" RenderOptions.BitmapScalingMode="LowQuality" PresentationOptions:Freeze="True">
+                            <Image.CacheMode>
+                                <BitmapCache PresentationOptions:Freeze="True"/>
+                            </Image.CacheMode>
+                        </Image>
+                        <!--<Image Source="/LFFSSK;component/Resource/AnWImages/Alipay+.png" Width="150"/>-->
+                    </Button>
+                    <Button Style="{StaticResource BtnPaymentMethodEW}" Margin="10" Command="{Binding BtnPayment}" CommandParameter="WECHAT">
+                        <Image Source="/LFFSSK;component/Resource/LFFImages/WechatPay.png" Width="150" RenderOptions.BitmapScalingMode="LowQuality" PresentationOptions:Freeze="True">
+                            <Image.CacheMode>
+                                <BitmapCache PresentationOptions:Freeze="True"/>
+                            </Image.CacheMode>
+                        </Image>
+                        <!--<Image Source="/LFFSSK;component/Resource/AnWImages/WechatPay.png" Width="150"/>-->
+                    </Button>
+                </WrapPanel>
+            </Grid>
+
+            <!---end new ui payment-->
+            
+            
+            <!--Cash Payment-->
+            <Button Style="{StaticResource BtnPaymentMethodOld}" Margin="0,15,0,0" Command="{Binding BtnPayment}" Visibility="Visible" CommandParameter="CASH">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="{Binding Lbl_Cash,UpdateSourceTrigger=PropertyChanged}" FontSize="24" FontFamily="{StaticResource BaseFontFamily}" Margin="50,20,0,0"/>
+                    <StackPanel Orientation="Horizontal" Margin="50,10,0,0">
+                        <Border CornerRadius="50" Width="70" Height="70" BorderBrush="#DDDDDD" BorderThickness="3" Margin="0,0,10,0">
+                            <Grid>
+                                <Image Stretch="Uniform" Source="{Binding Cash, UpdateSourceTrigger=PropertyChanged}" RenderOptions.BitmapScalingMode="LowQuality" PresentationOptions:Freeze="True">
+                                    <Image.CacheMode>
+                                        <BitmapCache PresentationOptions:Freeze="True"/>
+                                    </Image.CacheMode>
+                                </Image>
+                            </Grid>
+                            <!--<Border.Background>
+                                <ImageBrush Stretch="Uniform" ImageSource="{Binding Cash, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Border.Background>-->
+                        </Border>
+                    </StackPanel>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+
+        <Border Background="Transparent" Height="180" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50">
+                <Button Content="{Binding Lbl_BtnClose,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource BtnCancel}" Command="{Binding BtnReturnSummary}" Margin="25" Width="480"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
