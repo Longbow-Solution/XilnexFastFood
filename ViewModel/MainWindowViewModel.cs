@@ -87,6 +87,7 @@ namespace LFFSSK.ViewModel
         Visibility _ShowBannerMedias = Visibility.Collapsed;
         bool _isMenuExclusion = false;
         bool _UnderMaintenance = false;
+        public string QRCodeReceipt = string.Empty;
 
         string _CheckNumber;
         ePaymentMethod _PaymentMethod;
@@ -8314,6 +8315,7 @@ Batch Amount: {5}
                 {
                     try
                     {
+                        QRCodeReceipt = string.Empty;
                         bool initialOrderResult = InitialOrder(paymentMethod);
 
                         if (initialOrderResponse != null)
@@ -8324,7 +8326,10 @@ Batch Amount: {5}
                                 orderRequest.OrderDetails.OrderNo = initialOrderNumber;
                             }
                             if (!string.IsNullOrEmpty(initialOrderResponse.ReferenceNo))
+                            {
                                 referenceNo = initialOrderResponse.ReferenceNo;
+                                QRCodeReceipt = initialOrderResponse.ReferenceNo;
+                            }
                         }
 
                         ShowLoading = Visibility.Collapsed;
@@ -8368,19 +8373,46 @@ Batch Amount: {5}
                                 
                                     if (PostOrder("Test123"))
                                     {
-                                        Thread.Sleep(2000);
+
                                         Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
                                         {
                                             SetStage(eStage.FinalPage);
                                         }));
 
-                                        _WaitDone.Reset();
-                                        _WaitDone.WaitOne(10000);
-
-                                        Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                                        Sales_Resp cardResponse = null;
+                                        if (!GeneralVar.DocumentPrint.Print_CardReceipt(true, TotalAmount, KioskId, fnbRes.OrderNumber.ToString(), dineMethod, CartList, cardResponse, Convert.ToDecimal(AnWTotalAmount), AnWTax, AnWRounding, AnWVoucherAmount, AnWGiftVoucher, StoreName, IsDelaySentOrder))
                                         {
-                                            SetStage(eStage.Home);
-                                        }));
+                                            _WaitDone.Reset();
+                                            _WaitDone.WaitOne(10000);
+
+                                            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                                            {
+                                                SetStage(eStage.Offline);
+                                            }));
+                                        }
+                                        else
+                                        {
+                                            _WaitDone.Reset();
+                                            _WaitDone.WaitOne(10000);
+
+                                            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                                            {
+                                                SetStage(eStage.Home);
+                                            }));
+                                        }
+                                        //Thread.Sleep(2000);
+                                        //    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                                        //    {
+                                        //        SetStage(eStage.FinalPage);
+                                        //    }));
+
+                                        //    _WaitDone.Reset();
+                                        //    _WaitDone.WaitOne(10000);
+
+                                        //    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                                        //    {
+                                        //        SetStage(eStage.Home);
+                                        //    }));
                                     }
                                     else
                                     {
@@ -9644,7 +9676,7 @@ END - CreditCardApprovedDetails ****************************************",
 
                 if (isCardPayment)
                 {
-                    if (!GeneralVar.DocumentPrint.Print_CardReceipt(isOrderSuccess, TotalAmount, KioskId, fnbRes.OrderNumber.ToString(), dineMethod, CartList, cardResponse, Convert.ToDecimal(AnWTotalAmount), AnWTax, AnWRounding, AnWVoucherAmount, AnWGiftVoucher, StoreName))
+                    if (!GeneralVar.DocumentPrint.Print_CardReceipt(isOrderSuccess, TotalAmount, KioskId, fnbRes.OrderNumber.ToString(), dineMethod, CartList, cardResponse, Convert.ToDecimal(AnWTotalAmount), AnWTax, AnWRounding, AnWVoucherAmount, AnWGiftVoucher, StoreName, IsDelaySentOrder))
                     {
                         _WaitDone.Reset();
                         _WaitDone.WaitOne(10000);

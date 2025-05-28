@@ -480,6 +480,9 @@
     <None Include="Resource\Template\AnWOrderReceiptCC_Failed.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resource\Template\AnWOrderReceiptCC_PreOrder.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Resource Include="Resource\Icon\favicon.png" />
     <Resource Include="Resource\Image\active-cart.png" />
     <Resource Include="Resource\Image\AliPay.png" />

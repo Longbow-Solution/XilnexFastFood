@@ -173,6 +173,7 @@ namespace LFFSSK
             List<string> printerTemplateFiles = new List<string>();
             printerTemplateFiles.Add(@"AnWOrderReceiptCC.docx");
             printerTemplateFiles.Add(@"AnWOrderReceiptCC_Failed.docx");
+            printerTemplateFiles.Add(@"AnWOrderReceiptCC_PreOrder.docx");
 
             foreach (string file in printerTemplateFiles)
                 SendAsPrintDocument(printerTemplateFolder + file, out printDoc, TokenList, ImageList, TableList, _isLandscape, paperSize, paperSize);
@@ -266,7 +267,8 @@ namespace LFFSSK
             }
         }
 
-        public bool Print_CardReceipt(bool isOrderSuccess, decimal subTotal, string componentCode, string queueNo, string dineMethod, ObservableCollection<CartModel.Product> cartItem, Sales_Resp response, decimal total, double tax, double rounding, double voucherAmount, double giftAmount,string storeName)
+        public bool Print_CardReceipt(bool isOrderSuccess, decimal subTotal, string componentCode, string queueNo, string dineMethod, ObservableCollection<CartModel.Product> cartItem, 
+            Sales_Resp response, decimal total, double tax, double rounding, double voucherAmount, double giftAmount,string storeName, bool printQR = false)
         {
             Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, string.Format("Print_CardReceipt Starting..."), traceCategory);
             bool isSuccess = false;
@@ -287,6 +289,14 @@ namespace LFFSSK
                 else
                     payMethod = GeneralVar.MainWindowVM._PaymentCategoryName;
 
+                Barcode.SetBarcodeSize(240, 260);
+                MemoryStream msEInvoiceBarcode = new MemoryStream();
+                Barcode.SetQRCodeSettings(XFUtility.Barcode.QRErrorCorrectionLevel.L);
+                msEInvoiceBarcode = Barcode.SaveBarcodeToStream(BarcodeFormat.QRCode, GeneralVar.MainWindowVM.QRCodeReceipt, SaveOptions.Jpg);
+                Bitmap bmEIvoiceBarcode = new Bitmap(msEInvoiceBarcode);
+
+                Dictionary<string, System.Drawing.Bitmap> imageToken = new Dictionary<string, System.Drawing.Bitmap>();
+                imageToken.Add("TicketBarcode", bmEIvoiceBarcode);
 
                 #region TokenList
 
@@ -296,7 +306,7 @@ namespace LFFSSK
                         {"[@KioskCode]", componentCode},
                         {"[@QueueNo]", queueNo},
                         {"[@DineMethod]", dineMethod},                       
-                        {"[@StoreName]", "A&W"}
+                        {"[@StoreName]", "Go Noodle"}
                     };
 
                 #endregion
@@ -528,8 +538,16 @@ namespace LFFSSK
 
                 if (isOrderSuccess)
                 {
-                    var saveStatus = SaveAsFile(Environment.CurrentDirectory + @"\Resource\Template\" + "AnWOrderReceiptCC.docx", @GeneralVar.ReceiptBackupPath + "\\" + queueNo + ".docx", WordFileFormat.Docx, TokenList, ImageList, TableList, paperSize);
-                    var status = SendAsPrintDocument(Environment.CurrentDirectory + @"\Resource\Template\" + "AnWOrderReceiptCC.docx", out printDoc, TokenList, ImageList, TableList, _isLandscape, paperSize, paperSize);
+                    if (printQR)
+                    {
+                        var saveStatus = SaveAsFile(Environment.CurrentDirectory + @"\Resource\Template\" + "AnWOrderReceiptCC_PreOrder.docx", @GeneralVar.ReceiptBackupPath + "\\" + queueNo + ".docx", WordFileFormat.Docx, TokenList, imageToken, TableList, paperSize);
+                        var status = SendAsPrintDocument(Environment.CurrentDirectory + @"\Resource\Template\" + "AnWOrderReceiptCC_PreOrder.docx", out printDoc, TokenList, imageToken, TableList, _isLandscape, paperSize, paperSize);
+                    }
+                    else
+                    {
+                        var saveStatus = SaveAsFile(Environment.CurrentDirectory + @"\Resource\Template\" + "AnWOrderReceiptCC.docx", @GeneralVar.ReceiptBackupPath + "\\" + queueNo + ".docx", WordFileFormat.Docx, TokenList, ImageList, TableList, paperSize);
+                        var status = SendAsPrintDocument(Environment.CurrentDirectory + @"\Resource\Template\" + "AnWOrderReceiptCC.docx", out printDoc, TokenList, ImageList, TableList, _isLandscape, paperSize, paperSize);
+                    }                   
                 }
                 else
                 {
