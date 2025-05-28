@@ -129,5 +129,21 @@ namespace LFFSSK.View
             timer = null;
 
         }
+
+        //private void TextBox_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    TxtTableNo.Focus();
+        //}
+
+        private void TxtTableNo_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if(TxtTableNo.IsVisible)
+            {
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    TxtTableNo.Focus();
+                }), DispatcherPriority.Input);
+            }    
+        }
     }
 }

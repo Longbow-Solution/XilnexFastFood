@@ -136,6 +136,10 @@
                         </Image>
                         <!--<Image Source="/LFFSSK;component/Resource/AnWImages/WechatPay.png" Width="150"/>-->
                     </Button>
+                    <Button Style="{StaticResource BtnPaymentMethodEW}" Margin="10" Command="{Binding BtnPayment}" CommandParameter="CASH">
+                        <TextBlock Text="Test Order" FontSize="25"/>
+                        <!--<Image Source="/LFFSSK;component/Resource/AnWImages/WechatPay.png" Width="150"/>-->
+                    </Button>
                 </WrapPanel>
             </Grid>
 
@@ -143,9 +147,9 @@
             
             
             <!--Cash Payment-->
-            <Button Style="{StaticResource BtnPaymentMethodOld}" Margin="0,15,0,0" Command="{Binding BtnPayment}" Visibility="Visible" CommandParameter="CASH">
+            <!--<Button Style="{StaticResource BtnPaymentMethodOld}" Margin="0,15,0,0" Command="{Binding BtnPayment}" Visibility="Visible" CommandParameter="CASH">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="{Binding Lbl_Cash,UpdateSourceTrigger=PropertyChanged}" FontSize="24" FontFamily="{StaticResource BaseFontFamily}" Margin="50,20,0,0"/>
+                    <TextBlock Text="Test Order" FontSize="24" FontFamily="{StaticResource BaseFontFamily}" Margin="50,20,0,0"/>
                     <StackPanel Orientation="Horizontal" Margin="50,10,0,0">
                         <Border CornerRadius="50" Width="70" Height="70" BorderBrush="#DDDDDD" BorderThickness="3" Margin="0,0,10,0">
                             <Grid>
@@ -155,13 +159,13 @@
                                     </Image.CacheMode>
                                 </Image>
                             </Grid>
-                            <!--<Border.Background>
+                            --><!--<Border.Background>
                                 <ImageBrush Stretch="Uniform" ImageSource="{Binding Cash, UpdateSourceTrigger=PropertyChanged}"/>
-                            </Border.Background>-->
+                            </Border.Background>--><!--
                         </Border>
                     </StackPanel>
                 </StackPanel>
-            </Button>
+            </Button>-->
         </StackPanel>
 
         <Border Background="Transparent" Height="180" VerticalAlignment="Bottom">

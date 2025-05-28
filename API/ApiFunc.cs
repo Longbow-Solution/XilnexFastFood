@@ -72,6 +72,68 @@ namespace LFFSSK.API
             }
             return isTrue;
         }
+
+        public bool InitOrder(ApiModel.InitialOrderRequest req, out ApiModel.InitialOrderResponse res)
+        {
+            bool isTrue = false;
+            res = null;
+
+            try
+            {
+                ApiRequest apiRequest = new ApiRequest();
+
+                string apiUrl = GeneralVar.ApiLB + "/api/SSK/InitOrder";
+                string requestBody = JsonConvert.SerializeObject(req);
+
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Info] InitOrder API Request = {0}\n", requestBody), _TraceCategory);
+
+                isTrue = apiRequest.SendPostRequest(apiUrl, null, null, null, null, null, requestBody, out string responseBody);
+
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Info] InitOrder API Response = {0}\n", responseBody), _TraceCategory);
+
+                if (isTrue)
+                {
+                    res = JsonConvert.DeserializeObject<ApiModel.InitialOrderResponse>(responseBody);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceError, String.Format("[Error] InitOrder = {0}", ex.Message), _TraceCategory);
+            }
+            return isTrue;
+        }
+
+        public bool PostOrder(ApiModel.PostOrderRequest req, out ApiModel.PostOrderResponse res)
+        {
+            bool isTrue = false;
+            res = null;
+
+            try
+            {
+                ApiRequest apiRequest = new ApiRequest();
+
+                string apiUrl = GeneralVar.ApiLB + "/api/SSK/PostOrder";
+                string requestBody = JsonConvert.SerializeObject(req);
+
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Info] PostOrder API Request = {0}\n", requestBody), _TraceCategory);
+
+                isTrue = apiRequest.SendPostRequest(apiUrl, null, null, GeneralVar.AppID, GeneralVar.token, GeneralVar.auth, requestBody, out string responseBody);
+
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Info] PostOrder API Response = {0}\n", responseBody), _TraceCategory);
+
+                if (isTrue)
+                {
+                    res = JsonConvert.DeserializeObject<ApiModel.PostOrderResponse>(responseBody);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceError, String.Format("[Error] PostOrder = {0}", ex.Message), _TraceCategory);
+            }
+            return isTrue;
+        }
     }
 }
 

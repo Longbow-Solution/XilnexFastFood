@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
 
         <Viewbox>
-            <Grid Height="1920" Width="1080">
+            <Grid Height="2100" Width="1300">
                 <Grid Grid.Row="0">
                     <Border Background="{StaticResource DarkBackground}"  Opacity="0.7"/>
                     <Border  VerticalAlignment="Center" HorizontalAlignment="Center" Width="875" Height="500" Background="White" CornerRadius="30" >

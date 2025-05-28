@@ -120,25 +120,15 @@
         </vw:SendOrderView>
 
         <StackPanel Orientation="Vertical" Height="1800" VerticalAlignment="Top">
-            <Grid Grid.Row="0" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="auto" SharedSizeGroup="slider"/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="1" Margin="0,50,0,0">
-                    <Slider x:Name="verticalSliderVisible" Style="{StaticResource Vertical_Slider}" Orientation="Vertical"
-							Minimum="0" Maximum="{Binding ElementName=verticalSlider, Path=Maximum}" />
-                    <Slider x:Name="verticalSlider" Opacity="0" IsMoveToPointEnabled="True" Style="{StaticResource Vertical_Slider}" Orientation="Vertical"
-							Minimum="0" ValueChanged="Slider_ValueChanged"/>
-                </Grid>
-                <ScrollViewer Name="SvSummary" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" VerticalScrollBarVisibility="Hidden" PanningMode="VerticalOnly"  Height="{Binding BorderHeight,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Margin="0,20,0,0">
+            
 
                     <StackPanel Orientation="Vertical" Background="#F9F9F9" Width="1080">
                         <Grid>
                             <StackPanel Orientation="Vertical">
-                                <Image Source="{Binding AnWLogo, UpdateSourceTrigger=PropertyChanged}" Height="300" Width="1080" Stretch="Fill"/>
-                                
-                                <Border CornerRadius="20" BorderThickness="1" BorderBrush="#EEEEEE" Width="1020" Height="102" Background="White" Margin="0,20,0,0" Visibility="{Binding LogOutBorderVisibility,UpdateSourceTrigger=PropertyChanged}">
+                                <!--<Image Source="{Binding AnWLogo, UpdateSourceTrigger=PropertyChanged}" Height="300" Width="1080" Stretch="Fill"/>-->
+                        <UserControl Content="{Binding MenuBannerView, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <Border CornerRadius="20" BorderThickness="1" BorderBrush="#EEEEEE" Width="1020" Height="102" Background="White" Margin="0,20,0,0" Visibility="{Binding LogOutBorderVisibility,UpdateSourceTrigger=PropertyChanged}">
                                     <Grid HorizontalAlignment="Center" Visibility="Visible" Width="1000" ShowGridLines="False">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="2*"/>
@@ -195,7 +185,19 @@
                         </Grid>
 
                         <StackPanel Margin="0,20,0,0">
-                            <ItemsControl ItemsSource="{Binding CartList,UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0">
+                    <Grid Grid.Row="0" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="auto" SharedSizeGroup="slider"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="1" Margin="0,50,0,0">
+                            <Slider x:Name="verticalSliderVisible" Style="{StaticResource Vertical_Slider}" Orientation="Vertical"
+							Minimum="0" Maximum="{Binding ElementName=verticalSlider, Path=Maximum}" />
+                            <Slider x:Name="verticalSlider" Opacity="0" IsMoveToPointEnabled="True" Style="{StaticResource Vertical_Slider}" Orientation="Vertical"
+							Minimum="0" ValueChanged="Slider_ValueChanged"/>
+                        </Grid>
+                        <ScrollViewer Name="SvSummary" VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" VerticalScrollBarVisibility="Hidden" PanningMode="VerticalOnly"  Height="{Binding BorderHeight,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Margin="0,20,0,0">
+                            <ItemsControl ItemsSource="{Binding CartList,UpdateSourceTrigger=PropertyChanged}" Margin="0,-20,0,0">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <StackPanel/>
@@ -234,8 +236,9 @@
                                                         </Grid.RowDefinitions>
                                                         <StackPanel VerticalAlignment="Top" Grid.Column="0" HorizontalAlignment="Left" Orientation="Vertical">
                                                             <TextBlock Text="{Binding itemName,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtItemQtyPrice}" />
-                                                            <TextBlock Text="{Binding DOUBLE_Sale_Price,UpdateSourceTrigger=PropertyChanged,StringFormat='RM {0:N2}'}" Style="{StaticResource TxtItemQtyPrice}" />
-                                                            <Line StrokeThickness="3" Grid.Row="1" VerticalAlignment="Bottom" X1="0" X2="150" Stroke="#FFC107"/>
+                                                            <Border BorderThickness="0,0,0,3" Grid.Row="1" HorizontalAlignment="Left"  BorderBrush="#FFC107" Margin="0,10">
+                                                                <TextBlock Text="{Binding DOUBLE_Sale_Price,UpdateSourceTrigger=PropertyChanged,StringFormat='RM {0:N2}'}" Style="{StaticResource TxtItemQtyPrice}" />
+                                                            </Border>
                                                         </StackPanel>
                                                         
                                                         <TextBlock HorizontalAlignment="Center" Text="{Binding ItemTotalPrice,UpdateSourceTrigger=PropertyChanged, StringFormat='RM {0:N2}'}"  Style="{StaticResource TxtItemQtyPrice}" VerticalAlignment="Top" Grid.Column="1" Margin="0,0,100,0"/>
@@ -327,60 +330,61 @@
                                         </Border>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
-                            </ItemsControl>                            
-                        </StackPanel>
-                    </StackPanel>
+                            </ItemsControl>
 
-                </ScrollViewer>
-            </Grid>           
+                        </ScrollViewer>
+                    </Grid>
+                </StackPanel>
+                    </StackPanel>
             
         </StackPanel>
         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Background="Transparent">
                 <Grid Height="300" Background="Transparent" VerticalAlignment="Bottom" ShowGridLines="False">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.8*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Style="{StaticResource BtnCancelSummary}" Command="{Binding BtnReturnLanding}" Margin="10,15">
+                <Button Style="{StaticResource BtnCancelSummary}" Command="{Binding BtnReturnLanding}" Margin="15,15">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="{Binding Lbl_CancelOrder,UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </Button>
 
-                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Grid.Column="1" Grid.ColumnSpan="2">                    
-                                <Border Width="400" MinHeight="270" BorderThickness="2" CornerRadius="20" HorizontalAlignment="Left" Background="Transparent">
-                            <StackPanel Orientation="Vertical">
-                                <Grid Margin="50,20,0,0" ShowGridLines="False">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Grid.Column="1">                    
+                                <Border Width="400" MinHeight="270" BorderThickness="2" CornerRadius="20" HorizontalAlignment="Center" Background="Transparent">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                            <Grid ShowGridLines="False" Margin="0,20,0,0" Width="300">
                                     <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding Lbl_Subtotal,UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Style="{StaticResource TxtSummary}"/>
-                                    <TextBlock Text="{Binding TotalAmount,UpdateSourceTrigger=PropertyChanged,StringFormat='RM {0:N2}'}" Grid.Column="1" Style="{StaticResource TxtSummary}"/>
+                                    <TextBlock Text="{Binding TotalAmount,UpdateSourceTrigger=PropertyChanged,StringFormat='RM {0:N2}'}" Grid.Column="1" Style="{StaticResource TxtSummary}" />
                                 </Grid>
-                                <Grid Margin="50,20,0,0">
+                            <Grid Margin="0,20,0,0">
                                     <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Text="Tax (%)" Grid.Column="0" Style="{StaticResource TxtSummary}"/>
-                                    <TextBlock Text="{Binding AnWTax,UpdateSourceTrigger=PropertyChanged,StringFormat='RM {0:N2}'}" Grid.Column="1" Style="{StaticResource TxtSummary}"/>
+                                    <TextBlock Text="{Binding AnWTax,UpdateSourceTrigger=PropertyChanged,StringFormat='RM {0:N2}'}" Grid.Column="1" Style="{StaticResource TxtSummary}" />
                                 </Grid>
-                            <Grid ShowGridLines="False" Margin="50,20,0,0">
+                            <Grid ShowGridLines="False" Margin="0,20,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Text="{Binding Lbl_GTotal,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtSummary}" Grid.Column="0"/>
-                                <TextBlock Text="{Binding AnWTotalAmount,UpdateSourceTrigger=PropertyChanged,StringFormat='RM {0:N2}'}" Style="{StaticResource TxtSummary}" Grid.Column="1" />
-                                <Line StrokeThickness="3" Grid.Column="1" VerticalAlignment="Bottom" X1="0" X2="120" Stroke="#FFC107"/>
+                                <Border BorderThickness="0,0,0,3" Grid.Column="1" HorizontalAlignment="Left"  BorderBrush="#FFC107" Margin="0,10">
+                                    <TextBlock Text="{Binding AnWTotalAmount,UpdateSourceTrigger=PropertyChanged,StringFormat='RM {0:N2}'}" Style="{StaticResource TxtSummary}" Grid.Column="1" />
+                                </Border>
                             </Grid>
                         </StackPanel>
                         </Border>
 
                     </StackPanel>
-                <Border Background="Transparent" Height="270" Grid.Column="2" VerticalAlignment="Bottom">
+                <Border Background="Transparent" Height="270" Grid.Column="2" VerticalAlignment="Bottom" Margin="-20,0,0,0">
                     <StackPanel Orientation="Vertical">
                         <Button Style="{StaticResource BtnPayment}" Command="{Binding BtnProceedPayment}" Content="{Binding Lbl_Checkout,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ViewOrderEnable,UpdateSourceTrigger=PropertyChanged}"/>
                         <Button Content="{Binding Lbl_ContinueOrder,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource BtnAddMore}" Command="{Binding BtnReturnMenu}" Margin="0,15"/>                        

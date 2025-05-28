@@ -194,15 +194,15 @@
                 <!--BottomBar-->
                 <Grid Grid.Row="1" Background="#110300" Panel.ZIndex="2">
                     <DockPanel LastChildFill="True" VerticalAlignment="Center">
-                        <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Margin="10,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                            <TextBlock Style="{StaticResource H20}"  Text="" Foreground="{StaticResource LFFSSK_WHITE}" />
-                            <!--<TextBlock Style="{StaticResource H20}" Margin="20,0" Text="{Binding AppVersion, UpdateSourceTrigger=PropertyChanged}" Foreground="{StaticResource LFFSSK_WHITE}" />-->
-                        </StackPanel>
+                        <!--<StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Margin="10,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                            <TextBlock Style="{StaticResource H20}"  Text="{Binding KioskId, UpdateSourceTrigger=PropertyChanged}" Foreground="{StaticResource LFFSSK_WHITE}" />
+                            --><!--<TextBlock Style="{StaticResource H20}" Margin="20,0" Text="{Binding AppVersion, UpdateSourceTrigger=PropertyChanged}" Foreground="{StaticResource LFFSSK_WHITE}" />--><!--
+                        </StackPanel>-->
 
                         <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Margin="10,0" HorizontalAlignment="Right" VerticalAlignment="Center">
                             <Button Command="{Binding EasyMaintenanceCommand}" CommandParameter="M" Margin="15,0" Style="{StaticResource TransparentStyle}">
                                 <!--<TextBlock Style="{StaticResource H20}"  Text="{Binding KioskId, UpdateSourceTrigger=PropertyChanged}"-->
-                                           <TextBlock Style="{StaticResource H20}"  Text="ABCddddddddddddd" Foreground="{StaticResource LFFSSK_WHITE}" HorizontalAlignment="Right" />    
+                                <TextBlock Style="{StaticResource H20}"  Text="{Binding KioskId, UpdateSourceTrigger=PropertyChanged}" Foreground="{StaticResource LFFSSK_WHITE}" HorizontalAlignment="Right" />    
                             </Button>
                             <TextBlock Style="{StaticResource H20}"  Text="{Binding sDate, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,15,0" Foreground="{StaticResource LFFSSK_WHITE}" HorizontalAlignment="Right" />
                             <TextBlock Style="{StaticResource H20}"  Text="{Binding sTime, UpdateSourceTrigger=PropertyChanged}" Foreground="{StaticResource LFFSSK_WHITE}" HorizontalAlignment="Right" />
@@ -224,9 +224,8 @@
                             </Button>
                         </StackPanel>
                     </Border>
-                </Grid>
-                
-                
+                </Grid>                
+               
             </Grid>
         </Viewbox>
     </Grid>

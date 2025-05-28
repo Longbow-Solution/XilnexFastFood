@@ -121,7 +121,7 @@
     <value>Finish Your Order With Our Popular Add-Ons!</value>
   </data>
   <data name="Lbl_AddToCart" xml:space="preserve">
-    <value>Place Order</value>
+    <value>Add To Cart</value>
   </data>
   <data name="Lbl_Ads" xml:space="preserve">
     <value>Touch screen to start</value>
@@ -201,6 +201,9 @@
   <data name="Lbl_Downsize" xml:space="preserve">
     <value>Change To A Regular Combo!</value>
   </data>
+  <data name="Lbl_DoYouHaveSeat" xml:space="preserve">
+    <value>Any Vacant Table ?</value>
+  </data>
   <data name="Lbl_Edit" xml:space="preserve">
     <value>Edit</value>
   </data>
@@ -255,6 +258,9 @@
   <data name="Lbl_Info" xml:space="preserve">
     <value>Information</value>
   </data>
+  <data name="Lbl_InputTableTent" xml:space="preserve">
+    <value>Please Input Table Service Number</value>
+  </data>
   <data name="Lbl_InsertPin" xml:space="preserve">
     <value>Please insert or tap your card at the payment terminal.</value>
   </data>
@@ -281,6 +287,12 @@
   </data>
   <data name="Lbl_MemberLogin" xml:space="preserve">
     <value>Log into your membership to earn rewards.</value>
+  </data>
+  <data name="Lbl_Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Lbl_No" xml:space="preserve">
+    <value>No</value>
   </data>
   <data name="Lbl_Or" xml:space="preserve">
     <value>Or</value>
@@ -374,6 +386,9 @@
   </data>
   <data name="Lbl_Welcome" xml:space="preserve">
     <value>Welcome,</value>
+  </data>
+  <data name="Lbl_Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
   <data name="Lbl_YourAmount" xml:space="preserve">
     <value>YOUR TOTAL AMOUNT</value>

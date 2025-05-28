@@ -53,6 +53,7 @@ namespace LFFSSK
         
         public static string MediaFileRepository = ConfigurationManager.AppSettings["MediaFileRepository"];
         public static string MenuRepository = ConfigurationManager.AppSettings["MenuImgRepository"];
+        public static string TopBannerRepository = ConfigurationManager.AppSettings["TopBannerFileRepository"];
 
 
         public static ePrinterModel PrinterModel = ePrinterModel.Fujitsu;
@@ -279,6 +280,7 @@ namespace LFFSSK
 
         #region API
         public static string ApiURL = ConfigurationManager.AppSettings["ApiURL"];
+        public static string ApiLB = ConfigurationManager.AppSettings["ApiLB"];
         public static string ApiKey = ConfigurationManager.AppSettings["x-api-key"];
 
         public static string LocationID = ConfigurationManager.AppSettings["LocationID"];
@@ -288,6 +290,8 @@ namespace LFFSSK
         public static string token = ConfigurationManager.AppSettings["token"];
         public static string auth = ConfigurationManager.AppSettings["auth"];
         public static string Source = ConfigurationManager.AppSettings["Source"];
+
+        public static bool EnableDelayOrder = ConfigurationManager.AppSettings["EnableDelayOrer"].ToLower()=="true";
 
         #endregion
 

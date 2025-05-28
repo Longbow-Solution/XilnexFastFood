@@ -213,6 +213,7 @@
     <Compile Include="API\ApiFunc.cs" />
     <Compile Include="API\ApiModel.cs" />
     <Compile Include="API\ApiRequest.cs" />
+    <Compile Include="API\Xilnex.cs" />
     <Compile Include="Helper\BoolToVisibilityConverter.cs" />
     <Compile Include="Helper\BoolToVisibilityConverterKeyboard.cs" />
     <Compile Include="Helper\CCIDHelper.cs" />

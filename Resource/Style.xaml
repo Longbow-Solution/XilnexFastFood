@@ -813,7 +813,7 @@
         <Setter Property="FontFamily" Value="{StaticResource BaseFontFamily}"/>
         <Setter Property="Effect">
             <Setter.Value>
-                <DropShadowEffect Color="#1A000000" ShadowDepth="0" BlurRadius="3"/>
+                <DropShadowEffect Color="#000000" ShadowDepth="0" BlurRadius="40" Opacity="0.1"/>
             </Setter.Value>
         </Setter>
         <Setter Property="Template">
@@ -879,7 +879,7 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             >
                         <Border.Effect>
-                            <DropShadowEffect Color="#0000001A" BlurRadius="5" ShadowDepth="1" />
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
                         </Border.Effect>
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
@@ -909,12 +909,12 @@
                 <ControlTemplate TargetType="RadioButton">
                     <Border Background="{TemplateBinding Background}"
                             CornerRadius="40"                            
-                            BorderThickness="3"
+                            BorderThickness="0"
                             BorderBrush="{TemplateBinding BorderBrush}"                            
                             >
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         <Border.Effect>
-                            <DropShadowEffect Color="#0000001A" BlurRadius="0.5" ShadowDepth="0" />
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
                         </Border.Effect>
                     </Border>
 
@@ -956,6 +956,9 @@
                             BorderThickness="3"
                             BorderBrush="Transparent">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
+                        </Border.Effect>
                     </Border>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding hasStock}" Value="False">
@@ -999,6 +1002,9 @@
                             BorderBrush="#EEEEEE"
                             CornerRadius="20">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
+                        </Border.Effect>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -1018,6 +1024,9 @@
                             BorderBrush="#EEEEEE"
                             CornerRadius="20">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
+                        </Border.Effect>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -1037,10 +1046,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
-                            CornerRadius="10"
+                            CornerRadius="12"
                             BorderThickness="3"
                             BorderBrush="{TemplateBinding BorderBrush}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
+                        </Border.Effect>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -1049,7 +1061,7 @@
 
     <Style TargetType="Button" x:Key="BtnCancelSummary">
         <Setter Property="Background" Value="#FFFFFF"/>
-        <Setter Property="Width" Value="350"/>
+        <Setter Property="Width" Value="330"/>
         <Setter Property="Height" Value="80"/>
         <Setter Property="Foreground" Value="#25293D"/>
         <Setter Property="FontFamily" Value="{StaticResource BaseFontFamily}"/>
@@ -1064,6 +1076,9 @@
                             BorderThickness="3"
                             BorderBrush="{TemplateBinding BorderBrush}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
+                        </Border.Effect>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -1087,6 +1102,9 @@
                             BorderThickness="3"
                             BorderBrush="{TemplateBinding BorderBrush}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
+                        </Border.Effect>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -1110,6 +1128,9 @@
                             BorderThickness="3"
                             BorderBrush="{TemplateBinding BorderBrush}">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
+                        </Border.Effect>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -1132,6 +1153,9 @@
                             BorderThickness="3"
                             BorderBrush="Transparent">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
+                        </Border.Effect>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -1161,10 +1185,10 @@
     </Style>
 
     <Style TargetType="Button" x:Key="BtnOK">
-        <Setter Property="Background" Value="#F26B32"/>
+        <Setter Property="Background" Value="#10C1A0"/>
         <Setter Property="Width" Value="250"/>
         <Setter Property="Height" Value="70"/>
-        <Setter Property="Foreground" Value="#FBF7EB"/>
+        <Setter Property="Foreground" Value="#25293D"/>
         <Setter Property="Margin" Value="0,10,10,10"/>
         <Setter Property="FontFamily" Value="{StaticResource BaseFontFamily}"/>
         <Setter Property="FontSize" Value="22"/>
@@ -1173,7 +1197,33 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
-                            CornerRadius="20">
+                            CornerRadius="12">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="#3D160E1F"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="BtnDone">
+        <Setter Property="Background" Value="#10C1A0"/>
+        <Setter Property="Width" Value="480"/>
+        <Setter Property="Height" Value="80"/>
+        <Setter Property="Foreground" Value="#25293D"/>
+        <Setter Property="FontFamily" Value="{StaticResource BaseFontFamily}"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="FontWeight" Value="{StaticResource 500}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="10"                            
+                            BorderThickness="3">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -1234,6 +1284,9 @@
                             CornerRadius="10"                            
                             BorderThickness="2">
                         <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
+                        </Border.Effect>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
@@ -1264,6 +1317,9 @@
                             CornerRadius="10"                            
                             BorderThickness="2">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
+                        </Border.Effect>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
@@ -1294,6 +1350,9 @@
                             CornerRadius="10"                            
                             BorderThickness="2">
                         <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
+                        </Border.Effect>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
@@ -1457,6 +1516,9 @@
                             BorderThickness="{TemplateBinding BorderThickness}"
                             BorderBrush="{TemplateBinding BorderBrush}">
                         <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"/>
+                        <Border.Effect>
+                            <DropShadowEffect Color="#000000" BlurRadius="40" ShadowDepth="0" Opacity="0.1"/>
+                        </Border.Effect>
                     </Border>
 
                     <ControlTemplate.Triggers>
@@ -1725,4 +1787,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
 </ResourceDictionary>

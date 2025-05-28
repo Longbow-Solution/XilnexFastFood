@@ -1176,5 +1176,40 @@ namespace LFFSSK.API
                 }
             }
         }
+
+        public class InitialOrderRequest 
+        {
+            public Xilnex.Request OrderDetails { get; set; }
+            public int ComponentId { get; set; }
+            public string ComponentCode { get; set; }
+            public int OutletId { get; set; }
+        }
+        public class InitialOrderResponse
+        {
+            public string Code { get; set; }
+            public string Title { get; set; }
+            public string Message { get; set; }
+            public string OrderNumber { get; set; }
+            public string ReferenceNo { get; set; }
+        }
+
+        public class PostOrderRequest
+        {
+            public bool IsDelayOrder { get; set; }
+            public string ReferenceNo { get; set; }
+            public Xilnex.Request OrderDetails { get; set; }
+            public int ComponentId { get; set; }
+            public string ComponentCode { get; set; }
+            public int OutletId { get; set; }
+        }
+
+        public class PostOrderResponse
+        {
+            public string Code { get; set; }
+            public string Title { get; set; }
+            public string Message { get; set; }
+            public string OrderNumber { get; set; }
+        }
+
     }
 }

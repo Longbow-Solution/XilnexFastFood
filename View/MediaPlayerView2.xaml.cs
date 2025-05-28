@@ -222,19 +222,19 @@ namespace LFFSSK.View
 
                 int index = 0;
 
-                if (!System.IO.Directory.Exists(GeneralVar.MediaFileRepository))
+                if (!System.IO.Directory.Exists(GeneralVar.TopBannerRepository))
                 {
                     System.Threading.Thread.Sleep(60000);
                     return GetNextMedia();
                 }
 
                 //if (GeneralVar.MainWindowVM == null) return null;
-                DirectoryInfo mediaDirectory = new DirectoryInfo(GeneralVar.MediaFileRepository);
+                DirectoryInfo mediaDirectory = new DirectoryInfo(GeneralVar.TopBannerRepository);
                 FileInfo[] AllFile = mediaDirectory.GetFiles("*.*", SearchOption.AllDirectories);
 
 
-                List<string> apiFileNames = new List<string>();
-                int FileCount = 0;
+                //List<string> apiFileNames = new List<string>();
+                int FileCount = AllFile.Count();
                 
                     //apiFileNames = GeneralVar.MainWindowVM.BannerList.Select(banner => banner.FileName).ToList();
                     //FileCount = GeneralVar.MainWindowVM.BannerList.Select(banner => banner.FileName).Count();
@@ -245,11 +245,17 @@ namespace LFFSSK.View
 
                 FileInfo[] files = new FileInfo[FileCount]; ;
 
-                    foreach (var image in apiFileNames)
-                    {
-                        files[index] = AllFile.Where(x => x.FullName.Contains(image)).Single();
-                        index++;
-                    }
+                    //foreach (var image in apiFileNames)
+                    //{
+                    //    files[index] = AllFile.Where(x => x.FullName.Contains(image)).Single();
+                    //    index++;
+                    //}
+
+                foreach (var image in AllFile)
+                {
+                    files[index] = AllFile.Where(x => x.FullName.Contains(image.ToString())).Single();
+                    index++;
+                }
 
                 if (files.Length == 0)
                 {

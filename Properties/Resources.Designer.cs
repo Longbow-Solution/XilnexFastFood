@@ -70,7 +70,7 @@ namespace LFFSSK.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Place Order.
+        ///   Looks up a localized string similar to Add To Cart.
         /// </summary>
         internal static string Lbl_AddToCart {
             get {
@@ -313,6 +313,15 @@ namespace LFFSSK.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Any Vacant Table ?.
+        /// </summary>
+        internal static string Lbl_DoYouHaveSeat {
+            get {
+                return ResourceManager.GetString("Lbl_DoYouHaveSeat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         internal static string Lbl_Edit {
@@ -475,6 +484,15 @@ namespace LFFSSK.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please Input Table Service Number.
+        /// </summary>
+        internal static string Lbl_InputTableTent {
+            get {
+                return ResourceManager.GetString("Lbl_InputTableTent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please insert or tap your card at the payment terminal..
         /// </summary>
         internal static string Lbl_InsertPin {
@@ -552,6 +570,24 @@ namespace LFFSSK.Properties {
         internal static string Lbl_MemberLogin {
             get {
                 return ResourceManager.GetString("Lbl_MemberLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        internal static string Lbl_Next {
+            get {
+                return ResourceManager.GetString("Lbl_Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string Lbl_No {
+            get {
+                return ResourceManager.GetString("Lbl_No", resourceCulture);
             }
         }
         
@@ -831,6 +867,15 @@ namespace LFFSSK.Properties {
         internal static string Lbl_Welcome {
             get {
                 return ResourceManager.GetString("Lbl_Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Lbl_Yes {
+            get {
+                return ResourceManager.GetString("Lbl_Yes", resourceCulture);
             }
         }
         

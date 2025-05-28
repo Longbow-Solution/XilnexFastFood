@@ -121,7 +121,7 @@
     <value>Selesaikan Pesanan Anda Dengan Menu Tambahan Popular Kami!</value>
   </data>
   <data name="Lbl_AddToCart" xml:space="preserve">
-    <value>Buat Pesanan</value>
+    <value>Tambah Ke Karta</value>
   </data>
   <data name="Lbl_Ads" xml:space="preserve">
     <value>Sentuh skrin untuk mula</value>
@@ -201,6 +201,9 @@
   <data name="Lbl_Downsize" xml:space="preserve">
     <value>Tukar Kepada Kombo Biasa!</value>
   </data>
+  <data name="Lbl_DoYouHaveSeat" xml:space="preserve">
+    <value>Ada meja kosong ?</value>
+  </data>
   <data name="Lbl_Edit" xml:space="preserve">
     <value>Ubah</value>
   </data>
@@ -255,6 +258,9 @@
   <data name="Lbl_Info" xml:space="preserve">
     <value>Informasi</value>
   </data>
+  <data name="Lbl_InputTableTent" xml:space="preserve">
+    <value>Sila Masukkan Nombor Table Tent</value>
+  </data>
   <data name="Lbl_InsertPin" xml:space="preserve">
     <value>Sila masukkan atau ketik kad anda di terminal pembayaran.</value>
   </data>
@@ -281,6 +287,12 @@
   </data>
   <data name="Lbl_MemberLogin" xml:space="preserve">
     <value>Log masuk keahlian anda untuk dapatkan ganjaran.</value>
+  </data>
+  <data name="Lbl_Next" xml:space="preserve">
+    <value>Seterusnya</value>
+  </data>
+  <data name="Lbl_No" xml:space="preserve">
+    <value>Tidak</value>
   </data>
   <data name="Lbl_Or" xml:space="preserve">
     <value>Atau</value>
@@ -328,7 +340,7 @@
     <value>Langkau</value>
   </data>
   <data name="Lbl_Subtotal" xml:space="preserve">
-    <value>Subjumlah (Termasuk Tax &amp; Fi)</value>
+    <value>Subjumlah</value>
   </data>
   <data name="Lbl_SuccessOrder" xml:space="preserve">
     <value>Berjaya Memperolehi</value>
@@ -374,6 +386,9 @@
   </data>
   <data name="Lbl_Welcome" xml:space="preserve">
     <value>Selamat datang, </value>
+  </data>
+  <data name="Lbl_Yes" xml:space="preserve">
+    <value>Ya</value>
   </data>
   <data name="Lbl_YourAmount" xml:space="preserve">
     <value>JUMLAH ANDA</value>

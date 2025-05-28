@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:LFFSSK.View" xmlns:local1="clr-namespace:LFFSSK.Helper"
              xmlns:PresentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
              xmlns:vw="clr-namespace:LFFSSK.View"
+             xmlns:Keyboard = "clr-namespace:XFUtility.Keyboard.Controls;assembly=XFUtility.Keyboard"
              mc:Ignorable="d" 
              d:DesignHeight="1920" d:DesignWidth="1080" Unloaded="UserControl_Unloaded" Loaded="UserControl_Loaded">
     <UserControl.Resources>
@@ -97,35 +98,63 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--<vw:LoginDisplayView Grid.Row="0" Grid.RowSpan="2" Panel.ZIndex="2" Height="1920" VerticalAlignment="Center">
-            <vw:LoginDisplayView.Style>
-                <Style TargetType="{x:Type UserControl}">
-                    <Setter Property="Visibility" Value="Collapsed" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding LoginVisbility, UpdateSourceTrigger=PropertyChanged}" Value="Visible" >
-                            <Setter Property="Visibility" Value="Visible" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </vw:LoginDisplayView.Style>
-        </vw:LoginDisplayView>-->
+        <!--Table Service-->
+        <Grid  Grid.Row="0" Grid.RowSpan="2" Panel.ZIndex="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="1080" Height="1920" Visibility="{Binding TableNoVisibility,UpdateSourceTrigger=PropertyChanged}">
+            <Border BorderBrush="Transparent" CornerRadius="30" BorderThickness="2" Width="900" Height="900" Background="White" Panel.ZIndex="10">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,30,0,0">
+                    <TextBlock Text="{Binding Lbl_InputTableTent}" FontSize="30" Margin="0,50" HorizontalAlignment="Center"/>
+                    <Border Height="180" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Gray" BorderThickness="3" Margin="0,0,0,50" CornerRadius="20">
+                        <TextBox Name="TxtTableNo" Text="{Binding TableNo,UpdateSourceTrigger=PropertyChanged}" Height="150" Width="500" FontSize="100"  TextAlignment="Center" BorderBrush="Gray" FocusVisualStyle="{x:Null}" CaretBrush="Transparent" BorderThickness="0" IsVisibleChanged="TxtTableNo_IsVisibleChanged"/>
+                    </Border>
+                    
+                    <Keyboard:OnScreenMobileNumPad Width="800" Height="355"/>
+                    <Grid Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Content="{Binding Lbl_Skip}" Style="{StaticResource BtnCancel}" Command="{Binding BtnCloseTableNoPopup}"/>
+                        <Button Grid.Column="1" Content="{Binding Lbl_Next}" Style="{StaticResource BtnOK}" IsEnabled="{Binding NextBtnEnable,UpdateSourceTrigger=PropertyChanged}" Command="{Binding BtnNextTableNoPopup}"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            <Border Background="{StaticResource LFFSSK_GREY}" Opacity="0.3" />
+        </Grid>
+
+        <!--Delay Order Service-->
+        <Grid  Grid.Row="0" Grid.RowSpan="2" Panel.ZIndex="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="1080" Height="1920" Visibility="{Binding DelayOrderPopupVisibility,UpdateSourceTrigger=PropertyChanged}">
+            <Border BorderBrush="Transparent" CornerRadius="30" BorderThickness="2" Width="700" Height="400" Background="White" Panel.ZIndex="10">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,50,0,0">
+                    <TextBlock Text="{Binding Lbl_DoYouHaveSeat}" FontSize="30" Margin="0,50" HorizontalAlignment="Center"/>
+                    <Grid Margin="0,70,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Content="{Binding Lbl_No}" Style="{StaticResource BtnCancel}" Command="{Binding BtnProceedDelayOrder}" Margin="25,0"/>
+                        <Button Grid.Column="1" Content="{Binding Lbl_Yes}" Command="{Binding BtnProceedSentOrder}" Margin="25,0" Style="{StaticResource BtnOK}"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            <Border Background="{StaticResource LFFSSK_GREY}" Opacity="0.3" />
+        </Grid>
 
         <Grid Grid.Row="0">
-            <!--<UserControl Content="{Binding MenuBannerView, UpdateSourceTrigger=PropertyChanged}" />-->
-            <Image Source="{Binding AnWLogo, UpdateSourceTrigger=PropertyChanged}" Height="300" Width="1080" Stretch="Fill"/>
+            <UserControl Content="{Binding MenuBannerView, UpdateSourceTrigger=PropertyChanged}" />
+            <!--<Image Source="{Binding AnWLogo, UpdateSourceTrigger=PropertyChanged}" Height="300" Width="1080" Stretch="Fill"/>-->
         </Grid>
         
-        <Grid Grid.Row="1" ShowGridLines="True" Height="1600">
-            <Grid ShowGridLines="False" MaxHeight="1500">
+        <Grid Grid.Row="1" ShowGridLines="False" Height="1700">
+            <Grid ShowGridLines="False" MaxHeight="1600">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
-                    <ColumnDefinition Width="7.5*"/>
+                    <ColumnDefinition Width="8*"/>
                 </Grid.ColumnDefinitions>
 
                 <!--Category-->
-                <Border Margin="0,10" Background="Transparent" VerticalAlignment="Top"  Width="1080">
+                <Border Margin="0,10" Background="Transparent" VerticalAlignment="Top"  Width="340">
                     <ScrollViewer HorizontalScrollBarVisibility="Hidden" PanningMode="HorizontalOnly" MaxWidth="1050" VerticalScrollBarVisibility="Disabled">
-                        <ItemsControl ItemsSource="{Binding CateDetails,UpdateSourceTrigger=PropertyChanged}"  VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" HorizontalAlignment="Left">
+                        <ItemsControl ItemsSource="{Binding CateDetails,UpdateSourceTrigger=PropertyChanged}"  VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Vertical"/>
@@ -184,7 +213,7 @@
                         </Grid>
                     </Border>
 
-                    <Grid ShowGridLines="False" MaxHeight="1500">
+                    <Grid ShowGridLines="False" MaxHeight="1800">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="2.5*"/>
                             <RowDefinition Height="7.5*"/>
@@ -194,7 +223,7 @@
                             <!--<TextBlock  Text="{Binding CateName,UpdateSourceTrigger=PropertyChanged}" FontSize="40" Foreground="#3C170F" Margin="20,50,0,0" FontWeight="{StaticResource 700}" />-->
 
                             <!--Menu-->
-                            <Grid Grid.Row="2" HorizontalAlignment="Left" ShowGridLines="False" Width="1080">
+                            <Grid Grid.Row="2" HorizontalAlignment="Left" ShowGridLines="False" Width="1080" Margin="0,20,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="auto" SharedSizeGroup="slider"/>
@@ -227,11 +256,12 @@
                                                             </Border.Background>
                                                         </Border>
                                                         <!--<Image Source="{Binding img, UpdateSourceTrigger=PropertyChanged}" Width="280" Height="280"/>-->
-                                                        <TextBlock Grid.Row="2" Margin="0,-10" Text="{Binding itemName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtMenuDetails}" TextWrapping="Wrap"/>
-                                                        <TextBlock Grid.Row="2" Margin="0,10" VerticalAlignment="Bottom" Style="{StaticResource TxtMenuPrice}" Text="{Binding DOUBLE_Sale_Price, UpdateSourceTrigger=PropertyChanged, StringFormat='RM {0:N2}'}"/>
-                                                        <Line StrokeThickness="3" Grid.Row="2" VerticalAlignment="Bottom" X1="0" X2="100" Stroke="#FFC107"/>
-
-                                                    </Grid>
+                                                        <StackPanel Orientation="Vertical" Grid.Row="2">
+                                                            <TextBlock  Margin="0,-10" Text="{Binding itemName, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TxtMenuDetails}" TextWrapping="Wrap"/>
+                                                            <Border BorderThickness="0,0,0,3" Grid.Row="2" HorizontalAlignment="Left"  BorderBrush="#FFC107" Margin="0,10">
+                                                                <TextBlock  Margin="0,10" VerticalAlignment="Bottom" Style="{StaticResource TxtMenuPrice}" Text="{Binding DOUBLE_Sale_Price, UpdateSourceTrigger=PropertyChanged, StringFormat='RM {0:N2}'}"/>
+                                                            </Border>
+                                                        </StackPanel></Grid>
                                                 </Button>
                                             </DataTemplate>
                                         </ItemsControl.ItemTemplate>
@@ -243,11 +273,10 @@
                     </Grid>
                 </StackPanel>
             </Grid>
-
             
 
-            <Border Background="Transparent" Height="180" VerticalAlignment="Bottom">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,0,50">
+            <Border Background="Transparent" Height="180" VerticalAlignment="Bottom" Margin="0,0,0,120">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,0,0,40">
 
                     <Button Style="{StaticResource BtnCancel}" Command="{Binding BtnReturnLanding}" Margin="10,15">
                         <StackPanel Orientation="Horizontal">
@@ -255,7 +284,7 @@
                         </StackPanel>
                     </Button>
                     <Grid Margin="20,0,0,0">
-                        <Image Source="{Binding CartImage,UpdateSourceTrigger=PropertyChanged}" Height="60" Width="60"/>
+                        <Image Source="{Binding CartImage,UpdateSourceTrigger=PropertyChanged,IsAsync=True}" Height="60" Width="60" RenderOptions.BitmapScalingMode="LowQuality" PresentationOptions:Freeze="True"/>
                         <TextBlock Text="{Binding CartItem,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#6C727F" Margin="10,0" FontSize="24"/>
                     </Grid>
                     <TextBlock Text="{Binding TotalAmount,UpdateSourceTrigger=PropertyChanged,StringFormat='RM {0:N2}'}"  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>

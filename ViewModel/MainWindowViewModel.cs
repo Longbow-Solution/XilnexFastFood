@@ -770,7 +770,7 @@ namespace LFFSSK.ViewModel
         public ObservableCollection<ApiModel.GetMenu.Response.Category> MasterMenuCategory
         {
             get { return _MasterMenuCategory; }
-            set 
+            set
             {
                 _MasterMenuCategory = value;
                 OnPropertyChanged(nameof(MasterMenuCategory));
@@ -782,7 +782,7 @@ namespace LFFSSK.ViewModel
         public ObservableCollection<ApiModel.GetMenu.Response.Category> MasterMenuProduct
         {
             get { return _MasterMenuProduct; }
-            set 
+            set
             {
                 _MasterMenuProduct = value;
                 OnPropertyChanged(nameof(MasterMenuProduct));
@@ -977,6 +977,11 @@ namespace LFFSSK.ViewModel
         public string Lbl_UpgradeComboR => LFFSSK.Properties.Resources.Lbl_UpgradeComboR;
         public string Lbl_UpgradeComboL => LFFSSK.Properties.Resources.Lbl_UpgradeComboL;
         public string Lbl_SelectLanguage => LFFSSK.Properties.Resources.Lbl_SelectLanguage;
+        public string Lbl_InputTableTent => LFFSSK.Properties.Resources.Lbl_InputTableTent;
+        public string Lbl_Next => LFFSSK.Properties.Resources.Lbl_Next;
+        public string Lbl_No => LFFSSK.Properties.Resources.Lbl_No;
+        public string Lbl_Yes => LFFSSK.Properties.Resources.Lbl_Yes;
+        public string Lbl_DoYouHaveSeat => LFFSSK.Properties.Resources.Lbl_DoYouHaveSeat;
         #endregion
 
         #region ICommand
@@ -1221,32 +1226,35 @@ namespace LFFSSK.ViewModel
 
                 List<ApiModel.GetMenu.Response.Category> tempCategory = new List<ApiModel.GetMenu.Response.Category>();
                 List<ApiModel.GetMenu.Response.Category> tempMenu = new List<ApiModel.GetMenu.Response.Category>();
-                
-                if(_ApiFunc.GetMenu(out ApiModel.GetMenu.Response res))
+
+                KioskId = GeneralVar.ComponentCode;
+                StoreName = GeneralVar.ComponentCode;
+
+                if (_ApiFunc.GetMenu(out ApiModel.GetMenu.Response res))
                 {
-                    if(res!=null)
+                    if (res != null)
                     {
-                        if(res.ok)
+                        if (res.ok)
                         {
-                            if(res.data!=null)
+                            if (res.data != null)
                             {
-                                if(res.data.Count()>0)
+                                if (res.data.Count() > 0)
                                 {
                                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
                                     {
-                                            foreach (var category in res.data)
-                                            {
-                                                ApiModel.GetMenu.Response.Category newCategory = new ApiModel.GetMenu.Response.Category(category.categoryId, category.categoryName, category.categoryImageUrl, null, 0, null, null, null);                                        
+                                        foreach (var category in res.data)
+                                        {
+                                            ApiModel.GetMenu.Response.Category newCategory = new ApiModel.GetMenu.Response.Category(category.categoryId, category.categoryName, category.categoryImageUrl, null, 0, null, null, null);
 
-                                                tempCategory.Add(newCategory);
-                                            };
+                                            tempCategory.Add(newCategory);
+                                        };
                                         MasterMenuCategory = new ObservableCollection<ApiModel.GetMenu.Response.Category>(tempCategory);
 
-                                        
+
                                         foreach (var menuCate in res.data)
                                         {
-                                                ApiModel.GetMenu.Response.Category Data = null; 
-                                               Data = new ApiModel.GetMenu.Response.Category(menuCate.categoryId, menuCate.categoryName, menuCate.categoryImageUrl, menuCate.colorHex, menuCate.displayMode, menuCate.Department, menuCate.binaryImageUrl, new List<ApiModel.GetMenu.Response.Product>());
+                                            ApiModel.GetMenu.Response.Category Data = null;
+                                            Data = new ApiModel.GetMenu.Response.Category(menuCate.categoryId, menuCate.categoryName, menuCate.categoryImageUrl, menuCate.colorHex, menuCate.displayMode, menuCate.Department, menuCate.binaryImageUrl, new List<ApiModel.GetMenu.Response.Product>());
                                             Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, string.Format("Category : {0}", menuCate.categoryName), _TraceCategory);
 
 
@@ -1255,9 +1263,9 @@ namespace LFFSSK.ViewModel
                                                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, string.Format("Product : {0}", menu.itemName), _TraceCategory);
                                                 string menuFileName = string.Empty;
 
-                                                if(menu.imageUrlList!=null && menu.imageUrlList.Count()>0)
+                                                if (menu.imageUrlList != null && menu.imageUrlList.Count() > 0)
                                                 {
-                                                    if(!string.IsNullOrEmpty(menu.imageUrlList.First()))
+                                                    if (!string.IsNullOrEmpty(menu.imageUrlList.First()))
                                                         menuFileName = menu.imageUrlList.First().Substring(menu.imageUrlList.First().LastIndexOf('/') + 1);
 
                                                     foreach (var item in menuCate.products.Where(y => y.itemId == menu.itemId))
@@ -1273,109 +1281,109 @@ namespace LFFSSK.ViewModel
                                                     }
                                                 }
 
-                                                ApiModel.GetMenu.Response.Product newMenu = new ApiModel.GetMenu.Response.Product(menu.DOUBLE_Sale_Price, menu.DOUBLE_Employee_Price, menu.DOUBLE_Wholesale_Price, menu.DOUBLE_Custom_Price, menu.DOUBLE_Manufacturer_Suggested_Retail_Price, menu.DOUBLE_Web_Price, menu.DOUBLE_Web_Dealer_Price, menu.customField1, menu.customField2, menu.customField3, menu.customField4, menu.customField5, menu.customField6, menu.customField7, menu.customField8, menu.customField9, menu.customField10, menu.customField11, menu.customField12, menu.customField13, menu.customField14, menu.customField15, menu.customField16, menu.customField17, menu.customField18, menu.itemName, menu.colorHex, menu.dynamicHeaderLabel, new List<ApiModel.GetMenu.Response.DynamicModifier>(), menu.itemId, menu.itemCode, menu.itemType, menu.price, menu.imageUrlList, menu.binaryImageUrl, menu.imageUrl, menu.description,menu.size, menu.boolOpenPrice, menu.stockType, menu.IsAssortment, menu.HasStock, menu.AllowToSell, menu.IsActive,menu.MenuImagePath,menu.MenuImage,1, menu.DOUBLE_Sale_Price, menu.DOUBLE_Sale_Price);
-                                                
-                                                foreach(var modifier in menu.dynamicmodifiers)
+                                                ApiModel.GetMenu.Response.Product newMenu = new ApiModel.GetMenu.Response.Product(menu.DOUBLE_Sale_Price, menu.DOUBLE_Employee_Price, menu.DOUBLE_Wholesale_Price, menu.DOUBLE_Custom_Price, menu.DOUBLE_Manufacturer_Suggested_Retail_Price, menu.DOUBLE_Web_Price, menu.DOUBLE_Web_Dealer_Price, menu.customField1, menu.customField2, menu.customField3, menu.customField4, menu.customField5, menu.customField6, menu.customField7, menu.customField8, menu.customField9, menu.customField10, menu.customField11, menu.customField12, menu.customField13, menu.customField14, menu.customField15, menu.customField16, menu.customField17, menu.customField18, menu.itemName, menu.colorHex, menu.dynamicHeaderLabel, new List<ApiModel.GetMenu.Response.DynamicModifier>(), menu.itemId, menu.itemCode, menu.itemType, menu.price, menu.imageUrlList, menu.binaryImageUrl, menu.imageUrl, menu.description, menu.size, menu.boolOpenPrice, menu.stockType, menu.IsAssortment, menu.HasStock, menu.AllowToSell, menu.IsActive, menu.MenuImagePath, menu.MenuImage, 1, menu.DOUBLE_Sale_Price, menu.DOUBLE_Sale_Price);
+
+                                                foreach (var modifier in menu.dynamicmodifiers)
                                                 {
                                                     if (modifier.imageUrlList != null && modifier.imageUrlList.Count() > 0)
-                                                {
-                                                    if (!string.IsNullOrEmpty(modifier.imageUrlList.First()))
-                                                        menuFileName = modifier.imageUrlList.First().Substring(modifier.imageUrlList.First().LastIndexOf('/') + 1);
-
-                                                    foreach (var item in menu.dynamicmodifiers.Where(y => y.itemId == modifier.itemId))
                                                     {
-                                                        item.MenuImage = menuFileName;
-                                                    }
+                                                        if (!string.IsNullOrEmpty(modifier.imageUrlList.First()))
+                                                            menuFileName = modifier.imageUrlList.First().Substring(modifier.imageUrlList.First().LastIndexOf('/') + 1);
 
-                                                    GeneralFunc.DownloadMedia(GeneralVar.MenuRepository, menuFileName, modifier.imageUrlList.First());
+                                                        foreach (var item in menu.dynamicmodifiers.Where(y => y.itemId == modifier.itemId))
+                                                        {
+                                                            item.MenuImage = menuFileName;
+                                                        }
 
-                                                    foreach (var item in menu.dynamicmodifiers.Where(y => y.itemId == modifier.itemId))
-                                                    {
-                                                        item.RefreshMenuImage();
+                                                        GeneralFunc.DownloadMedia(GeneralVar.MenuRepository, menuFileName, modifier.imageUrlList.First());
+
+                                                        foreach (var item in menu.dynamicmodifiers.Where(y => y.itemId == modifier.itemId))
+                                                        {
+                                                            item.RefreshMenuImage();
+                                                        }
                                                     }
-                                                }
 
                                                     ApiModel.GetMenu.Response.DynamicModifier tempDynamicMod = new ApiModel.GetMenu.Response.DynamicModifier
-                                                {
-                                                    DOUBLE_Sale_Price = modifier.DOUBLE_Sale_Price,
-                                                    DOUBLE_Employee_Price = modifier.DOUBLE_Employee_Price,
-                                                    DOUBLE_Wholesale_Price = modifier.DOUBLE_Wholesale_Price,
-                                                    DOUBLE_Custom_Price = modifier.DOUBLE_Custom_Price,
-                                                    DOUBLE_Manufacturer_Suggested_Retail_Price = modifier.DOUBLE_Manufacturer_Suggested_Retail_Price,
-                                                    DOUBLE_Web_Price = modifier.DOUBLE_Web_Price,
-                                                    DOUBLE_Web_Dealer_Price = modifier.DOUBLE_Web_Dealer_Price,
-                                                    customField1 = modifier.customField1,
-                                                    customField2 = modifier.customField2,
-                                                    customField3 = modifier.customField3,
-                                                    customField4 = modifier.customField4,
-                                                    customField5 = modifier.customField5,
-                                                    customField6 = modifier.customField6,
-                                                    customField7 = modifier.customField7,
-                                                    customField8 = modifier.customField8,
-                                                    customField9 = modifier.customField9,
-                                                    customField10 = modifier.customField10,
-                                                    customField11 = modifier.customField11,
-                                                    customField12 = modifier.customField12,
-                                                    customField13 = modifier.customField13,
-                                                    customField14 = modifier.customField14,
-                                                    customField15 = modifier.customField15,
-                                                    customField16 = modifier.customField16,
-                                                    customField17 = modifier.customField17,
-                                                    customField18 = modifier.customField18,
-                                                    itemName = modifier.itemName,
-                                                    itemShortName = modifier.itemShortName,
-                                                    defaultSelected = modifier.defaultSelected,
-                                                    modifiers = new List<ApiModel.GetMenu.Response.Modifier>(),
-                                                    itemId = modifier.itemId,
-                                                    itemCode = modifier.itemCode,
-                                                    itemType = modifier.itemType,
-                                                    price = modifier.price,
-                                                    imageUrlList = modifier.imageUrlList,
-                                                    binaryImageUrl = modifier.binaryImageUrl,
-                                                    imageUrl= modifier.imageUrl,
-                                                    description = modifier.description,
-                                                    size = modifier.size,
-                                                    boolOpenPrice = modifier.boolOpenPrice,
-                                                    stockType = modifier.stockType,
-                                                    IsAssortment = modifier.IsAssortment,
-                                                    HasStock = modifier.HasStock,
-                                                    AllowToSell = modifier.AllowToSell,
-                                                    IsActive = modifier.IsActive,
-                                                    MenuImage = modifier.MenuImage,
-                                                    MenuImagePath = modifier.MenuImagePath
-                                                };
-
-                                                    foreach(var modifierDetails in modifier.modifiers)
-                                                {
-                                                    ApiModel.GetMenu.Response.Modifier tempMod = new ApiModel.GetMenu.Response.Modifier
                                                     {
-                                                        type = modifierDetails.type,
-                                                        minSelection = modifierDetails.minSelection,
-                                                        maxSelection = modifierDetails.maxSelection,
-                                                        groupId = modifierDetails.groupId,
-                                                        groupName = modifierDetails.groupName,
-                                                        selections = new List<ApiModel.GetMenu.Response.Selection>()
+                                                        DOUBLE_Sale_Price = modifier.DOUBLE_Sale_Price,
+                                                        DOUBLE_Employee_Price = modifier.DOUBLE_Employee_Price,
+                                                        DOUBLE_Wholesale_Price = modifier.DOUBLE_Wholesale_Price,
+                                                        DOUBLE_Custom_Price = modifier.DOUBLE_Custom_Price,
+                                                        DOUBLE_Manufacturer_Suggested_Retail_Price = modifier.DOUBLE_Manufacturer_Suggested_Retail_Price,
+                                                        DOUBLE_Web_Price = modifier.DOUBLE_Web_Price,
+                                                        DOUBLE_Web_Dealer_Price = modifier.DOUBLE_Web_Dealer_Price,
+                                                        customField1 = modifier.customField1,
+                                                        customField2 = modifier.customField2,
+                                                        customField3 = modifier.customField3,
+                                                        customField4 = modifier.customField4,
+                                                        customField5 = modifier.customField5,
+                                                        customField6 = modifier.customField6,
+                                                        customField7 = modifier.customField7,
+                                                        customField8 = modifier.customField8,
+                                                        customField9 = modifier.customField9,
+                                                        customField10 = modifier.customField10,
+                                                        customField11 = modifier.customField11,
+                                                        customField12 = modifier.customField12,
+                                                        customField13 = modifier.customField13,
+                                                        customField14 = modifier.customField14,
+                                                        customField15 = modifier.customField15,
+                                                        customField16 = modifier.customField16,
+                                                        customField17 = modifier.customField17,
+                                                        customField18 = modifier.customField18,
+                                                        itemName = modifier.itemName,
+                                                        itemShortName = modifier.itemShortName,
+                                                        defaultSelected = modifier.defaultSelected,
+                                                        modifiers = new List<ApiModel.GetMenu.Response.Modifier>(),
+                                                        itemId = modifier.itemId,
+                                                        itemCode = modifier.itemCode,
+                                                        itemType = modifier.itemType,
+                                                        price = modifier.price,
+                                                        imageUrlList = modifier.imageUrlList,
+                                                        binaryImageUrl = modifier.binaryImageUrl,
+                                                        imageUrl = modifier.imageUrl,
+                                                        description = modifier.description,
+                                                        size = modifier.size,
+                                                        boolOpenPrice = modifier.boolOpenPrice,
+                                                        stockType = modifier.stockType,
+                                                        IsAssortment = modifier.IsAssortment,
+                                                        HasStock = modifier.HasStock,
+                                                        AllowToSell = modifier.AllowToSell,
+                                                        IsActive = modifier.IsActive,
+                                                        MenuImage = modifier.MenuImage,
+                                                        MenuImagePath = modifier.MenuImagePath
                                                     };
 
-                                                    foreach(var selection in modifierDetails.selections)
+                                                    foreach (var modifierDetails in modifier.modifiers)
                                                     {
-                                                        if (selection.imageUrlList != null && selection.imageUrlList.Count() > 0)
+                                                        ApiModel.GetMenu.Response.Modifier tempMod = new ApiModel.GetMenu.Response.Modifier
                                                         {
-                                                            if (!string.IsNullOrEmpty(selection.imageUrlList.First()))
-                                                                menuFileName = selection.imageUrlList.First().Substring(selection.imageUrlList.First().LastIndexOf('/') + 1);
+                                                            type = modifierDetails.type,
+                                                            minSelection = modifierDetails.minSelection,
+                                                            maxSelection = modifierDetails.maxSelection,
+                                                            groupId = modifierDetails.groupId,
+                                                            groupName = modifierDetails.groupName,
+                                                            selections = new List<ApiModel.GetMenu.Response.Selection>()
+                                                        };
 
-                                                            foreach (var item in modifierDetails.selections.Where(y => y.itemId == selection.itemId))
+                                                        foreach (var selection in modifierDetails.selections)
+                                                        {
+                                                            if (selection.imageUrlList != null && selection.imageUrlList.Count() > 0)
                                                             {
-                                                                item.MenuImage = menuFileName;
-                                                            }
+                                                                if (!string.IsNullOrEmpty(selection.imageUrlList.First()))
+                                                                    menuFileName = selection.imageUrlList.First().Substring(selection.imageUrlList.First().LastIndexOf('/') + 1);
 
-                                                            GeneralFunc.DownloadMedia(GeneralVar.MenuRepository, menuFileName, selection.imageUrlList.First());
+                                                                foreach (var item in modifierDetails.selections.Where(y => y.itemId == selection.itemId))
+                                                                {
+                                                                    item.MenuImage = menuFileName;
+                                                                }
 
-                                                            foreach (var item in modifierDetails.selections.Where(y => y.itemId == selection.itemId))
-                                                            {
-                                                                item.RefreshMenuImage();
+                                                                GeneralFunc.DownloadMedia(GeneralVar.MenuRepository, menuFileName, selection.imageUrlList.First());
+
+                                                                foreach (var item in modifierDetails.selections.Where(y => y.itemId == selection.itemId))
+                                                                {
+                                                                    item.RefreshMenuImage();
+                                                                }
                                                             }
-                                                        }
 
                                                             ApiModel.GetMenu.Response.Selection tempSelection = new ApiModel.GetMenu.Response.Selection
                                                             {
@@ -1429,18 +1437,18 @@ namespace LFFSSK.ViewModel
                                                                 MenuImagePath = selection.MenuImagePath,
                                                                 IsEnable = true
 
-                                                        };
+                                                            };
 
                                                             tempMod.selections.Add(tempSelection);
-                                                    }
+                                                        }
 
-                                                    tempDynamicMod.modifiers.Add(tempMod);
-                                                }
+                                                        tempDynamicMod.modifiers.Add(tempMod);
+                                                    }
                                                     newMenu.dynamicmodifiers.Add(tempDynamicMod);
                                                 }
                                                 Data.products.Add(newMenu);
                                             }
-                                                tempMenu.Add(Data);
+                                            tempMenu.Add(Data);
                                         }
 
 
@@ -1456,7 +1464,7 @@ namespace LFFSSK.ViewModel
                         }
                         else
                         {
-                            if(String.IsNullOrEmpty(res.status))
+                            if (String.IsNullOrEmpty(res.status))
                                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, string.Format("[Error] API GetMenu - {0}", res.status), _TraceCategory);
                             else
                                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, string.Format("[Error] API GetMenu - OK response false"), _TraceCategory);
@@ -1466,7 +1474,7 @@ namespace LFFSSK.ViewModel
 
                 Checklist[i].UpdateStatus(eInitStatus.Success, "Retrieve Menu Success");
 
-                BannerList = new ObservableCollection<string>() {"foodbanner1.jpg","foodbanner2.jpg" };
+                BannerList = new ObservableCollection<string>() { "FFbanner1.png" };
 
                 if (GeneralVar.IOBoard == null)
                     GeneralVar.IOBoard = new IOHelper();
@@ -1825,7 +1833,7 @@ namespace LFFSSK.ViewModel
                     if (maintenanceClickAttempt >= 5)
                     {
                         maintenanceClickAttempt = 0;
-                        if (Stage == eStage.Home || Stage == eStage.Offline || Stage == eStage.OffOperation||Stage ==eStage.OutOfOrder)
+                        if (Stage == eStage.Home || Stage == eStage.Offline || Stage == eStage.OffOperation || Stage == eStage.OutOfOrder)
                         {
                             Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, string.Format("EasyMaintenance action = Maintenance Mode"), _TraceCategory);
                             ChangeToMaintenanceMode();
@@ -1862,6 +1870,11 @@ namespace LFFSSK.ViewModel
             WarningMessageBoxVisibility = Visibility.Collapsed;
             MenuBannerVisibility = Visibility.Collapsed;
             CheckOutContentVisibility = Visibility.Collapsed;
+
+            //handle delay order
+            DelayOrderPopupVisibility = Visibility.Collapsed;
+            TableNoVisibility = Visibility.Collapsed;
+            IsDelaySentOrder = false;
 
             if (GeneralVar.TestingMode)
                 TestLoginVisibility = Visibility.Visible;
@@ -1924,11 +1937,11 @@ namespace LFFSSK.ViewModel
                 {
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
                     {
-                    Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Info] RefreshMenuTime_Elapsed Refreshing..."), _TraceCategory);
-                    ShowLoading = Visibility.Visible;
-                    
+                        Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Info] RefreshMenuTime_Elapsed Refreshing..."), _TraceCategory);
+                        ShowLoading = Visibility.Visible;
 
-                    ShowLoading = Visibility.Collapsed;
+
+                        ShowLoading = Visibility.Collapsed;
                     }));
                 }
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Info] RefreshMenuTime_Elapsed Done..."), _TraceCategory);
@@ -2205,7 +2218,7 @@ namespace LFFSSK.ViewModel
                 {
                     if (CustomerID != 0)
                     {
-                        
+
                     }
 
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
@@ -3584,6 +3597,7 @@ Batch Amount: {5}
                         break;
                     case eStage.FinalPage:
                         StopCountDown();
+                        DetailsViewVisbility = Visibility.Collapsed;
                         if (vOrderNum == null)
                             vOrderNum = new OrderNumPage();
                         DesignView = vOrderNum;
@@ -3629,7 +3643,8 @@ Batch Amount: {5}
         public int CustomerID;
         public string AccessToken;
         public int eatMethod;
-        ApiModel.FnBOrders.Request orderRequest;
+        Xilnex.Request orderDetail;
+        ApiModel.InitialOrderRequest orderRequest;
         //Order.OrderPayment payment;
         string paymentCode = string.Empty;
         int paymentId;
@@ -3806,9 +3821,9 @@ Batch Amount: {5}
             }
         }
 
-        private List<ApiModel.FnBOrders.Request.SalesItem> _Order;
+        private List<Xilnex.Request.SalesItem> _Order;
 
-        public List<ApiModel.FnBOrders.Request.SalesItem> Order
+        public List<Xilnex.Request.SalesItem> Order
         {
             get { return _Order; }
             set
@@ -3853,6 +3868,10 @@ Batch Amount: {5}
                 EarnPoint = 0;
                 OrderNum = string.Empty;
 
+                //reset delay order
+                DelayOrderPopupVisibility = Visibility.Collapsed;
+                IsDelaySentOrder = false;
+
                 if (printCardResponse != null)
                     printCardResponse = null;
 
@@ -3862,7 +3881,7 @@ Batch Amount: {5}
                 if (customerLoginMenu)
                 {
                     Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Info] Clearing Customer Category Menu"), _TraceCategory);
-                    
+
                 }
                 else
                     Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Info] Customer Category Menu No exist"), _TraceCategory);
@@ -4004,7 +4023,7 @@ Batch Amount: {5}
                 {
                     if (CustomerID != 0)
                     {
-                        
+
                     }
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
                     {
@@ -4148,8 +4167,8 @@ Batch Amount: {5}
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, string.Format("TestingMode Login Starting..."), _TraceCategory);
                 //QRResponse("6066;iaayr4HF7cCzlCaKc+5kTA==");
                 //QRResponse("6570;jTM8pWgM+Z3rUDB5Q+mdzw=="); 
-                QRResponse("6313;/snPwCMWpzFyr0+zuL25iw=="); 
-                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, string.Format("TestingMode Login Done..."), _TraceCategory);
+                QRResponse("6313;/snPwCMWpzFyr0+zuL25iw==");
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, string.Format("TestingMode Login Done..."), _TraceCategory);
             }
             catch (Exception ex)
             {
@@ -4250,6 +4269,12 @@ Batch Amount: {5}
                 OnPropertyChanged(nameof(Lbl_DoneOnly));
                 OnPropertyChanged(nameof(Lbl_UpgradeComboR));
                 OnPropertyChanged(nameof(Lbl_UpgradeComboL));
+                OnPropertyChanged(nameof(Lbl_SelectLanguage));
+                OnPropertyChanged(nameof(Lbl_InputTableTent));
+                OnPropertyChanged(nameof(Lbl_Next));
+                OnPropertyChanged(nameof(Lbl_No));
+                OnPropertyChanged(nameof(Lbl_Yes));
+                OnPropertyChanged(nameof(Lbl_DoYouHaveSeat));
 
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger Language Change Done ..."), _TraceCategory);
             }
@@ -4383,8 +4408,8 @@ Batch Amount: {5}
         public ObservableCollection<string> BannerList
         {
             get { return _BannerList; }
-            set 
-            { 
+            set
+            {
                 _BannerList = value;
                 OnPropertyChanged(nameof(BannerList));
             }
@@ -4416,7 +4441,7 @@ Batch Amount: {5}
                 return _BtnCloseAds;
             }
         }
-        
+
         private ICommand _BtnClosePopUp;
 
         public ICommand BtnClosePopUp
@@ -4549,7 +4574,8 @@ Batch Amount: {5}
         }
 
         string dineMethod;
-        
+        string orderNum;
+        string referenceNo;
         public void RetrieveCategory(string command)
         {
             Thread thRetrieveCategory = new Thread(() =>
@@ -4559,6 +4585,8 @@ Batch Amount: {5}
                     ShowLoading = Visibility.Visible;
                     StopCountDown();
                     dineMethod = string.Empty;
+                    orderNum = string.Empty;
+                    TableNo = string.Empty;
                     Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Info] RetrieveCategory , Thread thRetrieveCategory Starting... "), _TraceCategory);
 
                     CartList = null;
@@ -4573,6 +4601,11 @@ Batch Amount: {5}
                             case "1":
                                 {
                                     dineMethod = "Dine In";
+                                    //TableNoVisibility = Visibility.Visible;
+                                    if (GeneralVar.EnableDelayOrder)
+                                    {
+                                        DelayOrderPopupVisibility = Visibility.Visible;
+                                    }
                                     Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Info] RetrieveCategory [ Option : Dine-In ] "), _TraceCategory);
                                 }
                                 break;
@@ -4587,13 +4620,13 @@ Batch Amount: {5}
                                 break;
                         }
 
-                        
-                        eatMethod = int.Parse(command);
 
+                        eatMethod = int.Parse(command);
+                        
                         CateDetails = new ObservableCollection<ApiModel.GetMenu.Response.Category>();
-                        foreach(var cate in MasterMenuCategory)
+                        foreach (var cate in MasterMenuCategory)
                         {
-                            CateDetails.Add(new ApiModel.GetMenu.Response.Category(cate.categoryId,cate.categoryName,cate.categoryImageUrl,null,0,null,null,null));
+                            CateDetails.Add(new ApiModel.GetMenu.Response.Category(cate.categoryId, cate.categoryName, cate.categoryImageUrl, null, 0, null, null, null));
                         }
 
                         Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
@@ -4683,8 +4716,8 @@ Batch Amount: {5}
         public Visibility CheckOutContentVisibility
         {
             get { return _CheckOutContentVisibility; }
-            set 
-            { 
+            set
+            {
                 _CheckOutContentVisibility = value;
                 OnPropertyChanged(nameof(CheckOutContentVisibility));
             }
@@ -4752,6 +4785,83 @@ Batch Amount: {5}
             }
         }
 
+        private string _TableNo;
+
+        public string TableNo
+        {
+            get 
+            {
+                if (!String.IsNullOrEmpty(_TableNo))
+                {
+                    if (_TableNo.Contains("."))
+                        _TableNo=_TableNo.Replace(".", "");
+                }                
+                return _TableNo; 
+            }
+            set 
+            { 
+                _TableNo = value;
+                OnPropertyChanged(nameof(TableNo));
+                OnPropertyChanged(nameof(NextBtnEnable));
+            }
+        }
+
+        private bool _NextBtnEnable;
+
+        public bool NextBtnEnable
+        {
+            get 
+            {
+                if (String.IsNullOrEmpty(TableNo))
+                    _NextBtnEnable = false;
+                else
+                    _NextBtnEnable = true;
+                return _NextBtnEnable; 
+            }
+            set 
+            { 
+                _NextBtnEnable = value;
+                OnPropertyChanged(nameof(NextBtnEnable));
+            }
+        }
+
+        private Visibility _TableNoVisibility;
+
+        public Visibility TableNoVisibility
+        {
+            get { return _TableNoVisibility; }
+            set 
+            { 
+                _TableNoVisibility = value;
+                OnPropertyChanged(nameof(TableNoVisibility));
+            }
+        }
+
+        private bool _IsDelaySentOrder;
+
+        public bool IsDelaySentOrder
+        {
+            get { return _IsDelaySentOrder; }
+            set 
+            { 
+                _IsDelaySentOrder = value;
+                OnPropertyChanged(nameof(IsDelaySentOrder));
+            }
+        }
+
+        private Visibility _DelayOrderPopupVisibility;
+
+        public Visibility DelayOrderPopupVisibility
+        {
+            get { return _DelayOrderPopupVisibility; }
+            set 
+            { 
+                _DelayOrderPopupVisibility = value;
+                OnPropertyChanged(nameof(DelayOrderPopupVisibility));
+            }
+        }
+
+
         #endregion
 
         #region Command
@@ -4774,6 +4884,50 @@ Batch Amount: {5}
                 if (_BtnViewOrder == null)
                     _BtnViewOrder = new RelayCommand(ViewOrderAction);
                 return _BtnViewOrder;
+            }
+        }
+
+        private ICommand _BtnCloseTableNoPopup;
+        public ICommand BtnCloseTableNoPopup
+        {
+            get
+            {
+                if (_BtnCloseTableNoPopup == null)
+                    _BtnCloseTableNoPopup = new RelayCommand(CloseTableNoPopUp);
+                return _BtnCloseTableNoPopup;
+            }
+        }
+
+        private ICommand _BtnNextTableNoPopup;
+        public ICommand BtnNextTableNoPopup
+        {
+            get
+            {
+                if (_BtnNextTableNoPopup == null)
+                    _BtnNextTableNoPopup = new RelayCommand(NextTableNoPopUp);
+                return _BtnNextTableNoPopup;
+            }
+        }
+
+        private ICommand _BtnProceedDelayOrder;
+        public ICommand BtnProceedDelayOrder
+        {
+            get
+            {
+                if (_BtnProceedDelayOrder == null)
+                    _BtnProceedDelayOrder = new RelayCommand(DelaySentOrder);
+                return _BtnProceedDelayOrder;
+            }
+        }
+
+        private ICommand _BtnProceedSentOrder;
+        public ICommand BtnProceedSentOrder
+        {
+            get
+            {
+                if (_BtnProceedSentOrder == null)
+                    _BtnProceedSentOrder = new RelayCommand(ProceedSentOrder);
+                return _BtnProceedSentOrder;
             }
         }
 
@@ -4836,6 +4990,71 @@ Batch Amount: {5}
             }
         }
 
+        //use to skip table service, will generate reference no
+        public void CloseTableNoPopUp()
+        {
+            try
+            {
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("User Skip Entering Table Tent Number - Trigger CloseTableNoPopUp Starting ..."), _TraceCategory);
+                TableNoVisibility = Visibility.Collapsed;
+                TableNo = string.Empty;
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("User Skip Entering Table Tent Number - Trigger CloseTableNoPopUp Done ..."), _TraceCategory);
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceError, String.Format("[Error] CloseTableNoPopUp = {0}", ex.Message), _TraceCategory);
+            }
+        }
+
+        //use if user have input table tent number 
+        public void NextTableNoPopUp()
+        {
+            try
+            {
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("User have Entering Table Tent Number - Trigger NextTableNoPopUp Starting ..."), _TraceCategory);
+                TableNoVisibility = Visibility.Collapsed;
+                //DelayOrderPopupVisibility = Visibility.Visible;
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("User have Entering Table Tent Number - Trigger NextTableNoPopUp Done ..."), _TraceCategory);
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceError, String.Format("[Error] NextTableNoPopUp = {0}", ex.Message), _TraceCategory);
+            }
+        }
+
+        //User have place, direct send order
+        public void ProceedSentOrder()
+        {
+            try
+            {
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("User have seat - Trigger ProceedSentOrder Starting ..."), _TraceCategory);
+                DelayOrderPopupVisibility = Visibility.Collapsed;
+                IsDelaySentOrder = false;
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("User have seat - Trigger ProceedSentOrder Done ..."), _TraceCategory);
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceError, String.Format("[Error] ProceedSentOrder = {0}", ex.Message), _TraceCategory);
+            }
+        }
+
+        //user agree to delay order, order details will save at lb end
+        public void DelaySentOrder()
+        {
+            try
+            {
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("User dont have seat - Trigger DelaySentOrder Starting ..."), _TraceCategory);
+                DelayOrderPopupVisibility = Visibility.Collapsed;
+                TableNoVisibility = Visibility.Visible;
+                IsDelaySentOrder = true;
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("User dont have seat - Trigger DelaySentOrder Done ..."), _TraceCategory);
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceError, String.Format("[Error] DelaySentOrder = {0}", ex.Message), _TraceCategory);
+            }
+        }
+
         public void RetrieveMenuDetails(int itemId)
         {
             try
@@ -4849,7 +5068,7 @@ Batch Amount: {5}
                 .SelectMany(category => category.products) // Flatten all products into a single list
                 .FirstOrDefault(product => product.itemId == itemId);
 
-                if(tempItem!=null)
+                if (tempItem != null)
                 {
                     MenuDetails.Add(new ApiModel.GetMenu.Response.Product
                         (
@@ -5018,23 +5237,37 @@ Batch Amount: {5}
                 {
                     if (MenuDetails.Count() > 0)
                     {
-                        foreach (var modifiertype in MenuDetails.SelectMany(modifier=>modifier.dynamicmodifiers).ToList())
+                        foreach (var modifiertype in MenuDetails.SelectMany(modifier => modifier.dynamicmodifiers).ToList())
                         {
                             foreach (var modifierDet in modifiertype.modifiers)
                             {
+                                //to set item default and be checked
                                 if (modifierDet.minSelection == 1 && modifierDet.selections.Count() == 1)
                                 {
                                     modifierDet.selections[0].IsEnable = false;
+
+                                    if(modifierDet.selections[0].defaultSelected == 1)
+                                    {
+                                        modifierDet.selections[0].IsCheck = true;
+                                    }
                                 }
 
-                                if (modifierDet.minSelection == 1)
+                                //to tick default item
+                                if (modifierDet.minSelection >= 1)
                                 {
-                                    if(modifierDet.selections.Where(x=>x.defaultSelected==1).Count()>1)
+                                    if (modifierDet.selections.Where(x => x.defaultSelected == 1).Count() > 0)
                                     {
 
-                                        modifierDet.selections.Where(x => x.itemId == (modifierDet.selections.FirstOrDefault(y => y.defaultSelected == 1).itemId)).Select(z => z.IsCheck = true).ToList();
-                                            //[0].IsCheck = true;
+                                        modifierDet.selections.ForEach(y =>
+                                        {
+                                            if (y.defaultSelected == 1)
+                                            {
+                                                y.IsCheck = true;
+                                            }
+                                        });
                                     }
+                                    else
+                                        modifierDet.selections[0].IsCheck = true;
                                 }
                             }
                         }
@@ -5045,6 +5278,7 @@ Batch Amount: {5}
                 }
                 else
                     Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Menu Details is null"), _TraceCategory);
+
 
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger RetrieveMenuDetails Done ..."), _TraceCategory);
 
@@ -5069,7 +5303,7 @@ Batch Amount: {5}
 
                 MasterMenuProduct.Where(x => x.categoryId == categoryId).ToList().ForEach(y =>
                 {
-                    if(y.products!=null)
+                    if (y.products != null)
                     {
                         y.products.ForEach(f =>
                         {
@@ -5133,14 +5367,14 @@ Batch Amount: {5}
                                         itemName = a.itemName,
                                         itemShortName = a.itemShortName,
                                         defaultSelected = a.defaultSelected,
-                                        modifiers = a.modifiers.Select(b=>new ApiModel.GetMenu.Response.Modifier
+                                        modifiers = a.modifiers.Select(b => new ApiModel.GetMenu.Response.Modifier
                                         {
                                             type = b.type,
                                             minSelection = b.minSelection,
                                             maxSelection = b.maxSelection,
                                             groupId = b.groupId,
                                             groupName = b.groupName,
-                                            selections = b.selections.Select(c=>new ApiModel.GetMenu.Response.Selection
+                                            selections = b.selections.Select(c => new ApiModel.GetMenu.Response.Selection
                                             {
                                                 name = c.name,
                                                 defaultSelected = c.defaultSelected,
@@ -5177,7 +5411,7 @@ Batch Amount: {5}
                                                 customField16 = c.customField16,
                                                 customField17 = c.customField17,
                                                 customField18 = c.customField18,
-                                                size= c.size,
+                                                size = c.size,
                                                 boolOpenPrice = c.boolOpenPrice,
                                                 stockType = c.stockType,
                                                 IsAssortment = c.IsAssortment,
@@ -5233,7 +5467,7 @@ Batch Amount: {5}
                                     f.ItemCurrentQty,
                                     f.ItemTotalPrice,
                                     f.TempTotalPrice
-                                )); 
+                                ));
                         });
                     }
 
@@ -5262,40 +5496,48 @@ Batch Amount: {5}
 
                 GetLastestOrderList();
 
-                orderRequest =new ApiModel.FnBOrders.Request 
-                        (
-                            1,
-                            CartList.Sum(x=>x.ItemTotalPrice),
-                            0,
-                            0,
-                            CartList.Sum(x => x.ItemTotalPrice)*0.06,
-                            6,
-                            0,
-                            "9002",
-                            "9002",
-                            "a908bee656684f10889a027cc38a0737",
-                            "Take Away",//dineMethod,
-                            "ORD-NUY0959798",
-                            1,
-                            "MobileApp",
-                            string.Empty,
-                            false,
-                            DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:ss.fffZ"),
-                            "XILNEXLIVESALES",
-                            DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:ss.fffZ"),
-                            string.Empty,
-                            null,
-                            0,
-                            CartList.Sum(x=>x.ItemTotalPrice)-(CartList.Sum(y=>y.ItemTotalPrice)*0.06),
-                            string.Empty,
-                            0,
-                            "MLAPPOFFER",
-                            CartList.Sum(x=>x.ItemTotalPrice)*0.06,
-                            0,
-                            false,
-                            "ORD-NUY0959798",
-                            Order
-                            );
+                orderDetail = new Xilnex.Request
+                    (
+                        1,
+                        CartList.Sum(x => x.ItemTotalPrice),
+                        0,
+                        0,
+                        CartList.Sum(x => x.ItemTotalPrice) * 0.06,
+                        6,
+                        0,
+                        "9002",
+                        "9002",
+                        GeneralVar.LocationID,
+                        dineMethod,
+                        orderNum,
+                        1,
+                        GeneralVar.ComponentCode,
+                        string.Empty,
+                        false,
+                        DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:ss.fffZ"),
+                        "XILNEXLIVESALES",
+                        DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH:mm:ss.fffZ"),
+                        string.Empty,
+                        string.Empty,
+                        0,
+                        CartList.Sum(x => x.ItemTotalPrice) - (CartList.Sum(y => y.ItemTotalPrice) * 0.06),
+                        string.Empty,
+                        0,
+                        "-",
+                        CartList.Sum(x => x.ItemTotalPrice) * 0.06,
+                        0,
+                        false,
+                        orderNum,
+                        Order
+                    );
+
+                orderRequest = new ApiModel.InitialOrderRequest
+                {
+                    OrderDetails = orderDetail,
+                    ComponentId = GeneralVar.ComponentId,
+                    ComponentCode =GeneralVar.ComponentCode,
+                    OutletId = 1,
+                };
 
                 //CartItem = CartList.Select(x => x.ItemCurrentQty).Sum();
 
@@ -5396,8 +5638,6 @@ Batch Amount: {5}
         {
             try
             {
-
-
                 if (CheckSimilarity(null, out int itemCurrentQueue))
                 {
                     int menuQty = MenuDetails.Select(x => x.ItemCurrentQty).FirstOrDefault();
@@ -5426,7 +5666,7 @@ Batch Amount: {5}
                           {
                               var checkModifiers = a.selections.Where(b => b.IsCheck).ToList();
 
-                              if(checkModifiers.Any())
+                              if (checkModifiers.Any())
                               {
                                   ModifierDetails.Add(new CartModel.Modifier
                                   {
@@ -5910,7 +6150,153 @@ Batch Amount: {5}
                         tempItemId = TempEditItem.Select(x => x.itemId).FirstOrDefault();
                         TempMenu = new ObservableCollection<ApiModel.GetMenu.Response.Product>();
 
+                        TempEditItem.ToList().ForEach(y =>
+                        {
+                            TempMenu.Add(new ApiModel.GetMenu.Response.Product
+                                (
+                                y.DOUBLE_Sale_Price,
+                                y.DOUBLE_Employee_Price,
+                                y.DOUBLE_Wholesale_Price,
+                                y.DOUBLE_Custom_Price,
+                                y.DOUBLE_Manufacturer_Suggested_Retail_Price,
+                                y.DOUBLE_Web_Price,
+                                y.DOUBLE_Web_Dealer_Price,
+                                y.customField1,
+                                y.customField2,
+                                y.customField3,
+                                y.customField4,
+                                y.customField5,
+                                y.customField6,
+                                y.customField7,
+                                y.customField8,
+                                y.customField9,
+                                y.customField10,
+                                y.customField11,
+                                y.customField12,
+                                y.customField13,
+                                y.customField14,
+                                y.customField15,
+                                y.customField16,
+                                y.customField17,
+                                y.customField18,
+                                y.itemName,
+                                y.colorHex,
+                                y.dynamicHeaderLabel,
+                                y.dynamicmodifiers.Select(a => new ApiModel.GetMenu.Response.DynamicModifier
+                                {
+                                    DOUBLE_Sale_Price = a.DOUBLE_Sale_Price,
+                                    DOUBLE_Employee_Price = a.DOUBLE_Employee_Price,
+                                    DOUBLE_Wholesale_Price = a.DOUBLE_Wholesale_Price,
+                                    DOUBLE_Custom_Price = a.DOUBLE_Custom_Price,
+                                    DOUBLE_Manufacturer_Suggested_Retail_Price = a.DOUBLE_Manufacturer_Suggested_Retail_Price,
+                                    DOUBLE_Web_Price = a.DOUBLE_Web_Price,
+                                    DOUBLE_Web_Dealer_Price = a.DOUBLE_Web_Dealer_Price,
+                                    customField1 = a.customField1,
+                                    customField2 = a.customField2,
+                                    customField3 = a.customField3,
+                                    customField4 = a.customField4,
+                                    customField5 = a.customField5,
+                                    customField6 = a.customField6,
+                                    customField7 = a.customField7,
+                                    customField8 = a.customField8,
+                                    customField9 = a.customField9,
+                                    customField10 = a.customField10,
+                                    customField11 = a.customField11,
+                                    customField12 = a.customField12,
+                                    customField13 = a.customField13,
+                                    customField14 = a.customField14,
+                                    customField15 = a.customField15,
+                                    customField16 = a.customField16,
+                                    customField17 = a.customField17,
+                                    customField18 = a.customField18,
+                                    itemName = a.itemName,
+                                    itemShortName = a.itemShortName,
+                                    defaultSelected = a.defaultSelected,
+                                    modifiers = a.modifiers.Select(b => new ApiModel.GetMenu.Response.Modifier
+                                    {
+                                        type = b.type,
+                                        minSelection = b.minSelection,
+                                        maxSelection = b.maxSelection,
+                                        groupId = b.groupId,
+                                        groupName = b.groupName,
+                                        selections = b.selections.Select(c => new ApiModel.GetMenu.Response.Selection
+                                        {
+                                            name = c.name,
+                                            defaultSelected = c.defaultSelected,
+                                            itemId = c.itemId,
+                                            itemCode = c.itemCode,
+                                            itemType = c.itemType,
+                                            price = c.price,
+                                            DOUBLE_Sale_Price = c.DOUBLE_Sale_Price,
+                                            DOUBLE_Employee_Price = c.DOUBLE_Employee_Price,
+                                            DOUBLE_Wholesale_Price = c.DOUBLE_Wholesale_Price,
+                                            DOUBLE_Custom_Price = c.DOUBLE_Custom_Price,
+                                            DOUBLE_Manufacturer_Suggested_Retail_Price = c.DOUBLE_Manufacturer_Suggested_Retail_Price,
+                                            DOUBLE_Web_Price = c.DOUBLE_Web_Price,
+                                            DOUBLE_Web_Dealer_Price = c.DOUBLE_Web_Dealer_Price,
+                                            imageUrlList = c.imageUrlList,
+                                            binaryImageUrl = c.binaryImageUrl,
+                                            imageUrl = c.imageUrl,
+                                            description = c.description,
+                                            customField1 = c.customField1,
+                                            customField2 = c.customField2,
+                                            customField3 = c.customField3,
+                                            customField4 = c.customField4,
+                                            customField5 = c.customField5,
+                                            customField6 = c.customField6,
+                                            customField7 = c.customField7,
+                                            customField8 = c.customField8,
+                                            customField9 = c.customField9,
+                                            customField10 = c.customField10,
+                                            customField11 = c.customField11,
+                                            customField12 = c.customField12,
+                                            customField13 = c.customField13,
+                                            customField14 = c.customField14,
+                                            customField15 = c.customField15,
+                                            customField16 = c.customField16,
+                                            customField17 = c.customField17,
+                                            customField18 = c.customField18,
+                                            size = c.size,
+                                            boolOpenPrice = c.boolOpenPrice,
+                                            stockType = c.stockType,
+                                            IsAssortment = c.IsAssortment,
+                                            HasStock = c.HasStock,
+                                            AllowToSell = c.AllowToSell,
+                                            IsActive = c.IsActive,
+                                            groupId = c.groupId,
+                                            minSelection = c.minSelection,
+                                            maxSelection = c.maxSelection,
+                                            parentItemId = c.parentItemId,
+                                            MenuImage = c.MenuImage,
+                                            MenuImagePath = c.MenuImagePath,
+                                            IsEnable = c.IsEnable,
+                                            IsCheck = c.IsCheck
 
+                                        }).ToList()
+                                    }).ToList()
+                                }).ToList(),
+                                y.itemId,
+                                y.itemCode,
+                                y.itemType,
+                                y.price,
+                                y.imageUrlList,
+                                y.binaryImageUrl,
+                                y.imageUrl,
+                                y.description,
+                                y.size,
+                                y.boolOpenPrice,
+                                y.stockType,
+                                y.IsAssortment,
+                                y.HasStock,
+                                y.AllowToSell,
+                                y.IsActive,
+                                y.MenuImagePath,
+                                y.MenuImage,
+                                y.ItemCurrentQty,
+                                y.ItemTotalPrice,
+                                y.TempTotalPrice
+                                ));
+                        });
                     }
                 }
 
@@ -5927,7 +6313,7 @@ Batch Amount: {5}
                         {
                             itemCheck++;
                             Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Item [{0}] ", itemCheck), _TraceCategory);
-                            foreach (var modifier in item.dynamicmodifiers.SelectMany(modifier=>modifier.modifiers).ToList())
+                            foreach (var modifier in item.dynamicmodifiers.SelectMany(modifier => modifier.modifiers).ToList())
                             {
                                 foreach (var modifierCart in cartItem.dynamicmodifiers.SelectMany(cartModifier => cartModifier.modifiers).ToList())
                                 {
@@ -6543,7 +6929,7 @@ Batch Amount: {5}
 
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger EditOrderCart Done ..."), _TraceCategory);
             }
-            
+
             catch (Exception ex)
             {
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceError, String.Format("[Error] Trigger EditOrderCart : {0}", ex.ToString()), _TraceCategory);
@@ -6566,7 +6952,7 @@ Batch Amount: {5}
                 {
                     if (TempEditItem.Count() > 0)
                     {
-                        foreach (var modifiertype in TempEditItem.SelectMany(dynamicMod=>dynamicMod.dynamicmodifiers).ToList())
+                        foreach (var modifiertype in TempEditItem.SelectMany(dynamicMod => dynamicMod.dynamicmodifiers).ToList())
                         {
                             foreach (var modifier in modifiertype.modifiers)
                             {
@@ -6659,7 +7045,7 @@ Batch Amount: {5}
         //        ShowLoading = Visibility.Visible;
         //        Thread thLogout = new Thread(() =>
         //        {
-                    
+
 
         //            LogInBorderVisibility = Visibility.Visible;
         //            LogOutBorderVisibility = Visibility.Collapsed;
@@ -6714,7 +7100,7 @@ Batch Amount: {5}
         //            ShowLoading = Visibility.Collapsed;
         //        });
         //        thLogout.Start();
-                
+
 
         //        Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger LogOut Done ..."), _TraceCategory);
         //    }
@@ -6755,26 +7141,26 @@ Batch Amount: {5}
             try
             {
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger ProceedPayment Starting ..."), _TraceCategory);
-                if (AnWTotalAmount > 0)
+                //if (AnWTotalAmount > 0)
                     SetStage(eStage.PaymentMethodSelection);
-                else
-                {
-                    try
-                    {
-                        Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Thread thDirectOrder Starting ..."), _TraceCategory);
-                        ShowLoading = Visibility.Visible;
-                        Thread thDirectOrder = new Thread(() =>
-                        {
-                            DirectOrder();
-                        });
-                        thDirectOrder.Start();
-                        Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Thread thDirectOrder Starting ..."), _TraceCategory);
-                    }
-                    catch (Exception ex)
-                    {
-                        Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceError, String.Format("[Error] Thread thDirectOrder : {0}", ex.ToString()), _TraceCategory);
-                    }
-                }
+                //else
+                //{
+                //    try
+                //    {
+                //        Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Thread thDirectOrder Starting ..."), _TraceCategory);
+                //        ShowLoading = Visibility.Visible;
+                //        Thread thDirectOrder = new Thread(() =>
+                //        {
+                //            DirectOrder();
+                //        });
+                //        thDirectOrder.Start();
+                //        Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Thread thDirectOrder Starting ..."), _TraceCategory);
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceError, String.Format("[Error] Thread thDirectOrder : {0}", ex.ToString()), _TraceCategory);
+                //    }
+                //}
 
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger ProceedPayment Done ..."), _TraceCategory);
             }
@@ -7127,7 +7513,7 @@ Batch Amount: {5}
         //        //                        {
         //        //                            Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceError, String.Format("[Error] Download image voucher menu : {0}", ex.ToString()), _TraceCategory);
         //        //                        }
-                                        
+
         //        //                    }
 
         //        //                    ObservableCollection<CartModel.ModifierTypeDetails> tempDetail = new ObservableCollection<CartModel.ModifierTypeDetails>();
@@ -7277,12 +7663,12 @@ Batch Amount: {5}
             {
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger GetLastestOrderList Starting ..."), _TraceCategory);
 
-                Order = new List<ApiModel.FnBOrders.Request.SalesItem>();
+                Order = new List<Xilnex.Request.SalesItem>();
 
                 CartList.ToList().ForEach(x =>
                 {
                     int salesItem = x.itemId;
-                    List<ApiModel.FnBOrders.Request.Modifier> modifier = new List<ApiModel.FnBOrders.Request.Modifier>();
+                    List<Xilnex.Request.Modifier> modifier = new List<Xilnex.Request.Modifier>();
 
                     if (x.dynamicmodifiers.SelectMany(modifierzz => modifierzz.modifiers).Count() > 0)
                     {
@@ -7292,7 +7678,7 @@ Batch Amount: {5}
                             {
                                 z.selections.Where(f => f.IsCheck).ToList().ForEach(r =>
                                 {
-                                    ApiModel.FnBOrders.Request.Modifier tempMod = new ApiModel.FnBOrders.Request.Modifier
+                                    Xilnex.Request.Modifier tempMod = new Xilnex.Request.Modifier
                                     {
                                         Subtotal = r.DOUBLE_Sale_Price,
                                         SalesItemId = salesItem,
@@ -7323,7 +7709,7 @@ Batch Amount: {5}
                         });
                     }
 
-                    Order.Add(new ApiModel.FnBOrders.Request.SalesItem(
+                    Order.Add(new Xilnex.Request.SalesItem(
                                 x.itemId,
                                 x.itemId,
                                 x.itemCode,
@@ -7347,7 +7733,7 @@ Batch Amount: {5}
                                 modifier
                                 ));
                 });
-            
+
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger GetLastestOrderList Done ..."), _TraceCategory);
             }
             catch (Exception ex)
@@ -7550,78 +7936,78 @@ Batch Amount: {5}
                         {
                             Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Similarity - false"), _TraceCategory);
                             ObservableCollection<CartModel.Modifier> ModifierDetails = new ObservableCollection<CartModel.Modifier>();
-                                                        
 
-                            TempEditItem.SelectMany(x => x.dynamicmodifiers).SelectMany(y=>y.modifiers).ToList().ForEach(a =>
-                            {
-                                var checkedModifiers = a.selections.Where(b => b.IsCheck).ToList();
 
-                                if (checkedModifiers.Any())
-                                {
-                                    ModifierDetails.Add(new CartModel.Modifier
-                                    {
-                                        type = a.type,
-                                        minSelection = a.minSelection,
-                                        maxSelection = a.maxSelection,
-                                        groupId = a.groupId,
-                                        groupName = a.groupName,
-                                        selections = checkedModifiers.Select(c => new CartModel.Selection
-                                        {
-                                            name = c.name,
-                                            defaultSelected = c.defaultSelected,
-                                            itemId = c.itemId,
-                                            itemCode = c.itemCode,
-                                            itemType = c.itemType,
-                                            price = c.price,
-                                            DOUBLE_Sale_Price = c.DOUBLE_Sale_Price,
-                                            DOUBLE_Employee_Price = c.DOUBLE_Employee_Price,
-                                            DOUBLE_Wholesale_Price = c.DOUBLE_Wholesale_Price,
-                                            DOUBLE_Custom_Price = c.DOUBLE_Custom_Price,
-                                            DOUBLE_Manufacturer_Suggested_Retail_Price = c.DOUBLE_Manufacturer_Suggested_Retail_Price,
-                                            DOUBLE_Web_Price = c.DOUBLE_Web_Price,
-                                            DOUBLE_Web_Dealer_Price = c.DOUBLE_Web_Dealer_Price,
-                                            imageUrlList = c.imageUrlList,
-                                            binaryImageUrl = c.binaryImageUrl,
-                                            imageUrl = c.imageUrl,
-                                            description = c.description,
-                                            customField1 = c.customField1,
-                                            customField2 = c.customField2,
-                                            customField3 = c.customField3,
-                                            customField4 = c.customField4,
-                                            customField5 = c.customField5,
-                                            customField6 = c.customField6,
-                                            customField7 = c.customField7,
-                                            customField8 = c.customField8,
-                                            customField9 = c.customField9,
-                                            customField10 = c.customField10,
-                                            customField11 = c.customField11,
-                                            customField12 = c.customField12,
-                                            customField13 = c.customField13,
-                                            customField14 = c.customField14,
-                                            customField15 = c.customField15,
-                                            customField16 = c.customField16,
-                                            customField17 = c.customField17,
-                                            customField18 = c.customField18,
-                                            size = c.size,
-                                            boolOpenPrice = c.boolOpenPrice,
-                                            stockType = c.stockType,
-                                            IsAssortment = c.IsAssortment,
-                                            HasStock = c.HasStock,
-                                            AllowToSell = c.AllowToSell,
-                                            IsActive = c.IsActive,
-                                            groupId = c.groupId,
-                                            minSelection = c.minSelection,
-                                            maxSelection = c.maxSelection,
-                                            parentItemId = c.parentItemId,
-                                            MenuImage = c.MenuImage,
-                                            MenuImagePath = c.MenuImagePath,
-                                            IsCheck = c.IsCheck,
-                                            IsEnable = c.IsEnable
+                            TempEditItem.SelectMany(x => x.dynamicmodifiers).SelectMany(y => y.modifiers).ToList().ForEach(a =>
+                              {
+                                  var checkedModifiers = a.selections.Where(b => b.IsCheck).ToList();
 
-                                        }).ToList()
-                                    });
-                                }
-                            });
+                                  if (checkedModifiers.Any())
+                                  {
+                                      ModifierDetails.Add(new CartModel.Modifier
+                                      {
+                                          type = a.type,
+                                          minSelection = a.minSelection,
+                                          maxSelection = a.maxSelection,
+                                          groupId = a.groupId,
+                                          groupName = a.groupName,
+                                          selections = checkedModifiers.Select(c => new CartModel.Selection
+                                          {
+                                              name = c.name,
+                                              defaultSelected = c.defaultSelected,
+                                              itemId = c.itemId,
+                                              itemCode = c.itemCode,
+                                              itemType = c.itemType,
+                                              price = c.price,
+                                              DOUBLE_Sale_Price = c.DOUBLE_Sale_Price,
+                                              DOUBLE_Employee_Price = c.DOUBLE_Employee_Price,
+                                              DOUBLE_Wholesale_Price = c.DOUBLE_Wholesale_Price,
+                                              DOUBLE_Custom_Price = c.DOUBLE_Custom_Price,
+                                              DOUBLE_Manufacturer_Suggested_Retail_Price = c.DOUBLE_Manufacturer_Suggested_Retail_Price,
+                                              DOUBLE_Web_Price = c.DOUBLE_Web_Price,
+                                              DOUBLE_Web_Dealer_Price = c.DOUBLE_Web_Dealer_Price,
+                                              imageUrlList = c.imageUrlList,
+                                              binaryImageUrl = c.binaryImageUrl,
+                                              imageUrl = c.imageUrl,
+                                              description = c.description,
+                                              customField1 = c.customField1,
+                                              customField2 = c.customField2,
+                                              customField3 = c.customField3,
+                                              customField4 = c.customField4,
+                                              customField5 = c.customField5,
+                                              customField6 = c.customField6,
+                                              customField7 = c.customField7,
+                                              customField8 = c.customField8,
+                                              customField9 = c.customField9,
+                                              customField10 = c.customField10,
+                                              customField11 = c.customField11,
+                                              customField12 = c.customField12,
+                                              customField13 = c.customField13,
+                                              customField14 = c.customField14,
+                                              customField15 = c.customField15,
+                                              customField16 = c.customField16,
+                                              customField17 = c.customField17,
+                                              customField18 = c.customField18,
+                                              size = c.size,
+                                              boolOpenPrice = c.boolOpenPrice,
+                                              stockType = c.stockType,
+                                              IsAssortment = c.IsAssortment,
+                                              HasStock = c.HasStock,
+                                              AllowToSell = c.AllowToSell,
+                                              IsActive = c.IsActive,
+                                              groupId = c.groupId,
+                                              minSelection = c.minSelection,
+                                              maxSelection = c.maxSelection,
+                                              parentItemId = c.parentItemId,
+                                              MenuImage = c.MenuImage,
+                                              MenuImagePath = c.MenuImagePath,
+                                              IsCheck = c.IsCheck,
+                                              IsEnable = c.IsEnable
+
+                                          }).ToList()
+                                      });
+                                  }
+                              });
                             TempEditItem.Select(x => x.ModifierList = ModifierDetails).ToList();
                             CartList.Insert(index, TempEditItem.Single());
                         }
@@ -7657,10 +8043,10 @@ Batch Amount: {5}
         KeepAlive_Resp _CardBizLastAliveResponse = new KeepAlive_Resp();
         string _CardBizCardProcessState = string.Empty;
 
-        ApiModel.FnBOrders.Response fnbRes = null;
+        ApiModel.PostOrderResponse fnbRes = null;
 
-        //ApiModel.InitialOrder.Response initialOrderResponse = null;
-        //Order.OrderRequest intialOrderRequest;
+        ApiModel.InitialOrderResponse initialOrderResponse = null;
+        ApiModel.InitialOrderRequest intialOrderRequest;
 
         RazerPayIntegration razerPay = new RazerPayIntegration();
         RazerPaymentResponse printRazerResponse = null;
@@ -7677,7 +8063,7 @@ Batch Amount: {5}
 
         #region Property
 
-        int initialOrderId = 0;
+        string initialOrderNumber = string.Empty;
         string _Lbl_QRTimeRemaining;
         public string Lbl_QRTimeRemaining
         {
@@ -7884,6 +8270,29 @@ Batch Amount: {5}
             { "WECHAT", eRazerChannel.WechatPayCN }
         };
 
+        public bool InitialOrder(string paymentMethod)
+        {
+            bool success = false;
+
+            try
+            {
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger InitialOrder Starting ..."), _TraceCategory);
+                CalculateTotalItem();
+
+                if(!_ApiFunc.InitOrder(orderRequest, out initialOrderResponse))
+                {
+                    throw new Exception("Initial Order Fail");
+                }
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger InitialOrder Done ..."), _TraceCategory);
+                success = true;
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger InitialOrder Error - {0}", ex.ToString()), _TraceCategory);
+            }
+            return success;
+        }
+
         public void Payment(string paymentMethod)
         {
             try
@@ -7891,28 +8300,43 @@ Batch Amount: {5}
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger Payment Starting ..."), _TraceCategory);
                 StopCountDown();
                 ShowLoading = Visibility.Visible;
+
+                if (string.IsNullOrEmpty(TableNo))
+                {
+                    orderNum = string.Format("{0}-{1}", GeneralVar.ComponentCode, DateTime.Now.ToString("ddMMyyHHmmss"));
+                    orderRequest.OrderDetails.OrderNo = orderNum;
+                    
+                }
+                else
+                    orderRequest.OrderDetails.OrderNo = "TT"+TableNo;
+
                 Thread payment = new Thread(() =>
                 {
                     try
                     {
-                        //bool initialOrderResult = InitialOrder(paymentMethod);
+                        bool initialOrderResult = InitialOrder(paymentMethod);
 
-                        //if (initialOrderResponse != null)
-                        //{
-                        //    if (!string.IsNullOrEmpty(initialOrderResponse.OrderId))
-                        //        initialOrderId = Convert.ToInt32(initialOrderResponse.OrderId);
-                        //}
+                        if (initialOrderResponse != null)
+                        {
+                            if (!string.IsNullOrEmpty(initialOrderResponse.OrderNumber))
+                            {
+                                initialOrderNumber = initialOrderResponse.OrderNumber;
+                                orderRequest.OrderDetails.OrderNo = initialOrderNumber;
+                            }
+                            if (!string.IsNullOrEmpty(initialOrderResponse.ReferenceNo))
+                                referenceNo = initialOrderResponse.ReferenceNo;
+                        }
 
                         ShowLoading = Visibility.Collapsed;
 
-                        //if (!initialOrderResult)
-                        //{
-                        //    TxtErrorHeader = Lbl_Error;
-                        //    TxtErrorMessage = Lbl_ErrorAssist;
-                        //    WarningMessageBoxVisibility = Visibility.Visible;
-                        //    Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceError, "Initial Order failed.", _TraceCategory);
-                        //    return;
-                        //}
+                        if (!initialOrderResult)
+                        {
+                            TxtErrorHeader = Lbl_Error;
+                            TxtErrorMessage = Lbl_ErrorAssist;
+                            WarningMessageBoxVisibility = Visibility.Visible;
+                            Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceError, "Initial Order failed.", _TraceCategory);
+                            return;
+                        }
 
                         switch (paymentMethod)
                         {
@@ -7941,27 +8365,29 @@ Batch Amount: {5}
 
                             case "CASH":
                                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger Payment - Cash"), _TraceCategory);
-                                if (PostOrder("Test123"))
-                                {
-                                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                                
+                                    if (PostOrder("Test123"))
                                     {
                                         Thread.Sleep(2000);
-                                        SetStage(eStage.FinalPage);
-                                    }));
+                                        Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                                        {
+                                            SetStage(eStage.FinalPage);
+                                        }));
 
-                                    _WaitDone.Reset();
-                                    _WaitDone.WaitOne(10000);
+                                        _WaitDone.Reset();
+                                        _WaitDone.WaitOne(10000);
 
-                                    Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                                        Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                                        {
+                                            SetStage(eStage.Home);
+                                        }));
+                                    }
+                                    else
                                     {
-                                        SetStage(eStage.Home);
-                                    }));
-                                }
-                                else
-                                {
 
-                                }
+                                    }
                                 break;
+                                
 
                             default:
                                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger Payment - Default"), _TraceCategory);
@@ -8281,7 +8707,7 @@ END - CreditCardApprovedDetails ****************************************",
                 int paymentTypeId = 0;
                 isStopQRPayment = false;
                 _ReferenceNo = string.Empty;
-                _ReferenceNo = "test635624";
+                _ReferenceNo = referenceNo;
 
                 //if (initialOrderResponse != null)
                 //{
@@ -8352,7 +8778,7 @@ END - CreditCardApprovedDetails ****************************************",
 
                     ShowLoading = Visibility.Collapsed;
                     //ShowQRPayment = Visibility.Visible;
-                                       
+
 
                     Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
                     {
@@ -8671,14 +9097,16 @@ END - CreditCardApprovedDetails ****************************************",
                 ShowPaymentProcessing = Visibility.Collapsed;
                 ShowCardPayment = Visibility.Collapsed;
 
-                if (PostOrder(code))
-                {
-                    PrintReceipt(true, true, cardResponses, null);
-                }
-                else
-                {
-                    PrintReceipt(true, false, cardResponses, null);
-                }
+                
+                    if (PostOrder(code))
+                    {
+                        PrintReceipt(true, true, cardResponses, null);
+                    }
+                    else
+                    {
+                        PrintReceipt(true, false, cardResponses, null);
+                    }
+                
 
 
 
@@ -8887,6 +9315,16 @@ END - CreditCardApprovedDetails ****************************************",
                 PreparePaymentInformationEWallet(qrResponse.channelId);
                 ShowQRPayment = Visibility.Collapsed;
                 ShowPaymentProcessing = Visibility.Collapsed;
+                
+                if (PostOrder(code))
+                {
+                    PrintReceipt(false, true, null, qrResponse);
+                }
+                else
+                {
+                    PrintReceipt(false, false, null, qrResponse);
+                }
+                
 
                 //if (initialOrderResponse != null)
                 //{
@@ -9037,40 +9475,86 @@ END - CreditCardApprovedDetails ****************************************",
             {
                 fnbRes = null;
                 ShowSendingKitchen = Visibility.Visible;
+                #region Not Needed
 
-                Thread thFnbOrder = new Thread(() =>
+                //Thread thFnbOrder = new Thread(() =>
+                //{
+                //    Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger thFnbOrder Starting ..."), _TraceCategory);
+                //    try
+                //    {
+                //        if (_ApiFunc.FnBOrder(orderRequest, out fnbRes))
+                //        {
+                //            if (fnbRes != null)
+                //            {
+                //                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Post Order Success..."), _TraceCategory);
+                //                OrderNum = fnbRes.data.SalesNo.ToString();
+                //                //EarnPoint = postOrderRes.EarnPoints;
+                //                ShowSendingKitchen = Visibility.Collapsed;
+                //            }
+                //            else
+                //            {
+                //                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Error] Trigger thFnbOrder Fail ..."), _TraceCategory);
+                //                throw new Exception("Post Order Fail");
+                //            }
+                //        }
+                //        ShowSendingKitchen = Visibility.Collapsed;
+                //        Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger thFnbOrder Done ..."), _TraceCategory);
+
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Error] thFnBOrder fail - {0}",ex.ToString()), _TraceCategory);
+                //    }
+                //});
+
+                //thFnbOrder.Start();
+
+                #endregion
+
+                ApiModel.PostOrderRequest postOrderRequest = new ApiModel.PostOrderRequest
                 {
-                    Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger thFnbOrder Starting ..."), _TraceCategory);
-                    try
+                    IsDelayOrder = IsDelaySentOrder,
+                    ReferenceNo = initialOrderResponse.ReferenceNo,
+                    OrderDetails = orderDetail,
+                    ComponentId = GeneralVar.ComponentId,
+                    ComponentCode = GeneralVar.ComponentCode,
+                    OutletId = 1                    
+                };
+
+                if (_ApiFunc.PostOrder(postOrderRequest, out fnbRes))
+                {
+                    if (fnbRes != null)
                     {
-                        if (_ApiFunc.FnBOrder(orderRequest, out fnbRes))
+                        if(fnbRes.Code=="00")
                         {
-                            if (fnbRes != null)
-                            {
-                                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Post Order Success..."), _TraceCategory);
-                                OrderNum = fnbRes.data.SalesNo.ToString();
-                                //EarnPoint = postOrderRes.EarnPoints;
-                                ShowSendingKitchen = Visibility.Collapsed;
-                            }
-                            else
-                            {
-                                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Error] Trigger thFnbOrder Fail ..."), _TraceCategory);
-                                throw new Exception("Post Order Fail");
-                            }
+                            Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Post Order Success..."), _TraceCategory);
+                            OrderNum = fnbRes.OrderNumber.ToString();
+                            //EarnPoint = postOrderRes.EarnPoints;
+                            ShowSendingKitchen = Visibility.Collapsed;
                         }
-                        ShowSendingKitchen = Visibility.Collapsed;
-                        Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger thFnbOrder Done ..."), _TraceCategory);
-
+                        else
+                        {
+                            Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Error] Trigger thFnbOrder Fail ..."), _TraceCategory);
+                            throw new Exception("Post Order Fail");
+                        }
+                        
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Error] thFnBOrder fail - {0}",ex.ToString()), _TraceCategory);
+                        Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Error] Trigger thFnbOrder Fail ..."), _TraceCategory);
+                        throw new Exception("Post Order Fail");
                     }
-                });
-
-                thFnbOrder.Start();
-
-                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger Post Order Done ..."), _TraceCategory);
+                    success = true;
+                }
+                else
+                {
+                    Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("[Error] Trigger thFnbOrder Fail ..."), _TraceCategory);
+                    throw new Exception("Post Order Fail");
+                    //}
+                    ShowSendingKitchen = Visibility.Collapsed;
+                }
+                
+                Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger thFnbOrder Done ..."), _TraceCategory);
 
                 //waitforQRScan.Reset();
                 //waitforQRScan.WaitOne();
@@ -9081,8 +9565,7 @@ END - CreditCardApprovedDetails ****************************************",
                 //}));
 
                 //GeneralVar.DocumentPrint.Print_CardReceipt(Convert.ToDecimal(AnWTotalAmount), GeneralVar.ComponentCode, "--", dineMethod, CartList, null, 0m, 0, 0);
-
-                success = true;
+                                
             }
             catch (Exception ex)
             {
@@ -9161,7 +9644,7 @@ END - CreditCardApprovedDetails ****************************************",
 
                 if (isCardPayment)
                 {
-                    if (!GeneralVar.DocumentPrint.Print_CardReceipt(isOrderSuccess, TotalAmount, KioskId, fnbRes.data.SalesNo.ToString(), dineMethod, CartList, cardResponse, Convert.ToDecimal(AnWTotalAmount), AnWTax, AnWRounding, AnWVoucherAmount, AnWGiftVoucher, StoreName))
+                    if (!GeneralVar.DocumentPrint.Print_CardReceipt(isOrderSuccess, TotalAmount, KioskId, fnbRes.OrderNumber.ToString(), dineMethod, CartList, cardResponse, Convert.ToDecimal(AnWTotalAmount), AnWTax, AnWRounding, AnWVoucherAmount, AnWGiftVoucher, StoreName))
                     {
                         _WaitDone.Reset();
                         _WaitDone.WaitOne(10000);
@@ -9181,10 +9664,10 @@ END - CreditCardApprovedDetails ****************************************",
                             SetStage(eStage.Home);
                         }));
                     }
-                }                    
+                }
                 else
                 {
-                    if (!GeneralVar.DocumentPrint.Print_WalletReceipt(isOrderSuccess, TotalAmount, KioskId, fnbRes.data.SalesNo.ToString(), dineMethod, CartList, walletResponse, Convert.ToDecimal(AnWTotalAmount), AnWTax, AnWRounding, AnWVoucherAmount, AnWGiftVoucher, StoreName))
+                    if (!GeneralVar.DocumentPrint.Print_WalletReceipt(isOrderSuccess, TotalAmount, KioskId, fnbRes.OrderNumber.ToString(), dineMethod, CartList, walletResponse, Convert.ToDecimal(AnWTotalAmount), AnWTax, AnWRounding, AnWVoucherAmount, AnWGiftVoucher, StoreName))
                     {
                         _WaitDone.Reset();
                         _WaitDone.WaitOne(10000);
