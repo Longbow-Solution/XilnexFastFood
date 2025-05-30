@@ -5030,6 +5030,7 @@ Batch Amount: {5}
             {
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("User have seat - Trigger ProceedSentOrder Starting ..."), _TraceCategory);
                 DelayOrderPopupVisibility = Visibility.Collapsed;
+                TableNoVisibility = Visibility.Visible;
                 IsDelaySentOrder = false;
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("User have seat - Trigger ProceedSentOrder Done ..."), _TraceCategory);
             }
@@ -8279,6 +8280,16 @@ Batch Amount: {5}
             {
                 Trace.WriteLineIf(GeneralVar.SwcTraceLevel.TraceInfo, String.Format("Trigger InitialOrder Starting ..."), _TraceCategory);
                 CalculateTotalItem();
+
+                if (string.IsNullOrEmpty(TableNo))
+                {
+                    orderNum = string.Format("{0}-{1}", GeneralVar.ComponentCode, DateTime.Now.ToString("ddMMyyHHmmss"));
+                    orderRequest.OrderDetails.OrderNo = orderNum;
+                }
+                else
+                {
+                    orderRequest.OrderDetails.OrderNo = "TT" + TableNo;
+                }
 
                 if(!_ApiFunc.InitOrder(orderRequest, out initialOrderResponse))
                 {
